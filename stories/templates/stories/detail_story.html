@@ -1,10 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-hehehehe
-</body>
+{% extends 'stories/base.html' %}
+{% block title %} {{story.title}} {% endblock %}
+{% block body %}
+<h2> {{story.title}} </h2>
+<br>
+{{story.body}}
+<br>
+{% endblock body %}
 </html>

@@ -1,7 +1,7 @@
 {% extends 'stories/base.html' %}
 {% block title %} My Stories {% endblock %}
 {% block body %}
-<h1> My Story</h1>
+<h1> My Stories </h1>
 {% for story in allstories %}
 <div>
     <a href="{{story.get_absolute_url}}">
@@ -10,4 +10,4 @@
 </div>
 
 {% endfor %}
-{% endblock body %}}
+{% endblock body %}

@@ -1,0 +1,8 @@
+{% extends 'stories/base.html' %}
+{% block title %} My Stories {% endblock %}
+{% block body %}
+<h1> My Story</h1>
+{% for story in allstories %}
+{{ story }}
+{% endfor %}
+{% endblock body %}}

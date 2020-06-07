@@ -20,7 +20,7 @@ class Story(models.Model):
     updated = models.DateTimeField(auto_now=True)
 
     class Meta:
-        ordering = ('-publish')
+        ordering = ('-publish',)
 
     def __str__(self):
         return f'{self.title} by {self.author}'

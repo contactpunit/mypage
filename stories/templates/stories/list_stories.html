@@ -3,6 +3,9 @@
 {% block body %}
 <h1> My Story</h1>
 {% for story in allstories %}
-{{ story }}
+<a href="{{story.get_absolute_url}}">
+    {{story.title}}
+</a>
+
 {% endfor %}
 {% endblock body %}}

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.urls import reverse
 
 
 class Story(models.Model):
@@ -18,6 +19,13 @@ class Story(models.Model):
                               default='draft')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+
+    def get_absolute_url(self):
+        return reverse('stories:detail_story',
+                       args=[self.publish.year,
+                             self.publish.month,
+                             self.publish.day,
+                             self.slug])
 
     class Meta:
         ordering = ('-publish',)

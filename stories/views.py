@@ -11,12 +11,11 @@ def get_all_stories(request):
 
 def story_detail(request, year, month, day, story):
     story = get_object_or_404(Story, slug=story,
-                              status='draft',
+                              status='published',
                               publish__year=year,
                               publish__month=month,
                               publish__day=day)
     comments = story.storycomments.filter(active=True)
-    print(comments)
     new_comment = None
     if request.method == 'POST':
         form = CommentForm(request.POST)

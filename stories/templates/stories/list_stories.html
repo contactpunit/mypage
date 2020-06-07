@@ -3,9 +3,11 @@
 {% block body %}
 <h1> My Story</h1>
 {% for story in allstories %}
-<a href="{{story.get_absolute_url}}">
-    {{story.title}}
-</a>
+<div>
+    <a href="{{story.get_absolute_url}}">
+        {{story.title}}
+    </a>
+</div>
 
 {% endfor %}
 {% endblock body %}}

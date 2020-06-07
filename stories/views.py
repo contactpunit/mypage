@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Story
+from .forms import CommentForm
 
 
 def get_all_stories(request):
@@ -14,7 +15,16 @@ def story_detail(request, year, month, day, story):
                               publish__year=year,
                               publish__month=month,
                               publish__day=day)
-    print(story)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            render(request, 'stories/detail_story.html',
+                   {'story': story,
+                    'form': form
+                    })
+    else:
+        form = CommentForm()
     return render(request,
                   'stories/detail_story.html',
-                  {'story': story})
+                  {'story': story,
+                   'form': form})

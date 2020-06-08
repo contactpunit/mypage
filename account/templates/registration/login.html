@@ -1,0 +1,22 @@
+{% extends 'registration/base.html' %}
+{% block title %} Log-In {% endblock title %}
+{% block body %}
+<h1>Log-In</h1>
+{% if form.errors %}
+<p>
+    Your Username and Password didnot match.
+    Please try again
+</p>
+{% else %}
+<p>Please use following form for Login</p>
+{% endif %}
+<div>
+    <form action="{% url 'account:login' %}" method="POST">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{next}}"/>
+        <input type="hidden" name="next" value="{{next}}"/>
+        <p><input type="submit" value="Log In"></p>
+    </form>
+</div>
+{% endblock body %}

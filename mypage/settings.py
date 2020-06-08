@@ -26,6 +26,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'account:login'
+
+LOGOUT_URL = 'account:logout'
+
+LOGIN_REDIRECT_URL = 'account:dashboard'
+
+LOGOUT_REDIRECT_URL = 'account:login'
+
 # Application definition
 
 INSTALLED_APPS = [

@@ -79,6 +79,8 @@ TEMPLATES = [
     },
 ]
 
+EMAIL_BACKEND = 'django.core.email.backends.console.EmailBackend'
+
 WSGI_APPLICATION = 'mypage.wsgi.application'
 
 # Database

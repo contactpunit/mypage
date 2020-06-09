@@ -79,7 +79,11 @@ TEMPLATES = [
     },
 ]
 
-EMAIL_BACKEND = 'django.core.email.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_HOST = 'localhost'
+
+EMAIL_PORT = 1025
 
 WSGI_APPLICATION = 'mypage.wsgi.application'
 

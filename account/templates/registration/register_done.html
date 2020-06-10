@@ -1,0 +1,7 @@
+{% extends 'registration/base.html' %}
+{% block title %}User Registration Form{% endblock title %}
+{% block body %}
+<h1>User Registration Form</h1>
+<p>Thank you {{new_user.first_name}} for registering to the site. You can login by clicking here <a
+        href="{% url 'account:login' %}">Login</a>.</p>
+{% endblock body %}

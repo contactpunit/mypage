@@ -79,12 +79,6 @@ TEMPLATES = [
     },
 ]
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-EMAIL_HOST = 'localhost'
-
-EMAIL_PORT = 1025
-
 WSGI_APPLICATION = 'mypage.wsgi.application'
 
 # Database
@@ -132,3 +126,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

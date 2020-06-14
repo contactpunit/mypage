@@ -1,0 +1,14 @@
+{% extends 'registration/base.html' %}
+{% block title %} My Photos {% endblock %}
+{% block body %}
+<h1> My Photos </h1>
+{% for photo in userphotos %}
+<div>
+    <a href="media/{{photo.photo}}">
+        {{photo.title}}
+    </a>
+</div>
+{% empty %}
+  <p>There are no photos</p>
+{% endfor %}
+{% endblock body %}

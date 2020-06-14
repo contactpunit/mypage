@@ -1,0 +1,34 @@
+{% extends 'registration/base.html' %}
+{% block title %} {{photo.title}} {% endblock %}
+{% block body %}
+<h2> {{photo.title}} </h2>
+<br>
+{{photo.caption}}
+<br>
+
+<br>
+<!--{% with comments.count as total_comments %}-->
+<!--<h2>-->
+<!--    {{total_comments}} comments-->
+<!--</h2>-->
+<!--{% endwith %}-->
+<!--{% for comment in comments %}-->
+<!--<div>-->
+<!--    <p>-->
+<!--        From: {{ comment.name }}-->
+<!--        Comment: {{ comment.body }}-->
+<!--        Created on: {{comment.created}}-->
+<!--    </p>-->
+<!--</div>-->
+<!--{% endfor %}-->
+<!--{% if new_comment %}-->
+<!--  <h2>Your comment has been added</h2>-->
+<!--{% else %}-->
+<!--  <h2>Add a new comment</h2>-->
+<!--  <form action="." method="POST">-->
+<!--    {{ form.as_p }}-->
+<!--    {% csrf_token %}-->
+<!--    <p><input type="submit" value="Add comment"></p>-->
+<!--  </form>-->
+<!--{% endif %}-->
+{% endblock body %}

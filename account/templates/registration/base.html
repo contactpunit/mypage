@@ -10,10 +10,11 @@
 <body>
 <div class="container">
     <header>
+        <img src="{% static 'images/logo.png' %}" class="bordered-image" rel="My Logo"/>
         <nav>
             {% if request.user.is_authenticated %}
-            <ul class="menu">
-                <li {% if section == "dashboard" %} class="selected" {% endif %}>
+            <ul class="menu" >
+                <li {% if section == "dashboard" %} class="selected" {% endif %} >
                 <a href="{% url 'account:dashboard' %}">My Dashboard</a>
                 </li>
                 <li {% if section == "photos" %}class="selected" {% endif %}>
@@ -34,7 +35,6 @@
         </span>
         </nav>
 
-        <img src="img/git.png" class="bordered-image" rel="My Logo"/>
     </header>
 <section>
     {% block body %}

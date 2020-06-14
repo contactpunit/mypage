@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'stories',
     'comments',
+    'photos',
 ]
 
 MIDDLEWARE = [

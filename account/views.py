@@ -4,7 +4,6 @@ from .models import Profile
 from .forms import LoginForm, UserRegistrationForm, ProfileForm, UserForm
 from django.contrib.auth.decorators import login_required
 
-
 @login_required
 def dashboard(request):
     return render(request,

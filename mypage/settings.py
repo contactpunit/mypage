@@ -26,9 +26,18 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+LOGIN_URL = 'account:login'
+
+LOGOUT_URL = 'account:logout'
+
+LOGIN_REDIRECT_URL = 'account:dashboard'
+
+LOGOUT_REDIRECT_URL = 'account:login'
+
 # Application definition
 
 INSTALLED_APPS = [
+    'account',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -56,6 +65,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'stories/templates'),
+            os.path.join(BASE_DIR, 'login/templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -116,3 +126,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')

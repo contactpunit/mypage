@@ -1,4 +1,4 @@
-{% extends 'stories/base.html' %}
+{% extends 'registration/base.html' %}
 {% block title %} My Stories {% endblock %}
 {% block body %}
 <h1> My Stories </h1>
@@ -8,6 +8,7 @@
         {{story.title}}
     </a>
 </div>
-
+{% empty %}
+  <p>There are no stories</p>
 {% endfor %}
 {% endblock body %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+</head>
+<body>
+<div class="container">
+    <header>
+        <nav>
+            {% if request.user.is_authenticated %}
+            <ul class="menu">
+                <li {% if section == "dashboard" %} class="selected" {% endif %}>
+                <a href="{% url 'account:dashboard' %}">My Dashboard</a>
+                </li>
+                <li {% if section == "photos" %}class="selected" {% endif %}>
+                <a href="#">My Photos</a>
+                </li>
+                <li {% if section == "stories" %}class="selected" {% endif %}>
+                <a href="{% url 'stories:list_stories' %}">My Stories</a>
+                </li>
+            </ul>
+        {% endif %}
+        <span class="user">
+        {% if request.user.is_authenticated %}
+          Hello {{request.user.username}}.
+          <a href="{% url 'account:logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'account:login' %}">Login</a>
+        {% endif %}
+        </span>
+        </nav>
+
+        <img src="img/git.png" class="bordered-image" rel="My Logo"/>
+    </header>
+<section>
+    {% block body %}
+    {% endblock %}
+</section>
+<footer>
+    <p>Copyright &copy; {% now "Y" %} <strong>Punit Jain</strong>. All Rights Reserved.</p>
+</footer>
+</div>
+</body>
+</html>

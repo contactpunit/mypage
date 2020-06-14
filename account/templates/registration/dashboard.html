@@ -1,0 +1,17 @@
+{% extends 'registration/base.html' %}
+{% block title %} Dashboard {% endblock title %}
+{% block body %}
+<h1>Dashboard</h1>
+<p>Welcome to your Dashboard</p>
+<div class="Photos">
+    My Photos
+</div>
+<div class="Stories">
+    <a href="{% url 'stories:list_stories' %}">Stories</a>
+</div>
+<body>
+<div id="content">
+
+</div>
+</body>
+{% endblock body %}

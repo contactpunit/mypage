@@ -1,14 +1,17 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Story
 from comments.forms import CommentForm
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def get_all_stories(request):
-    allstories = Story.objects.all()
+    allstories = Story.objects.filter(author=request.user)
     return render(request, 'stories/list_stories.html',
                   {'allstories': allstories})
 
 
+@login_required
 def story_detail(request, year, month, day, story):
     story = get_object_or_404(Story, slug=story,
                               status='published',

@@ -28,4 +28,5 @@ urlpatterns = [
     path('register/', register, name='register'),
     path('edit/', edit, name='edit'),
     path('stories/', include('stories.urls', namespace='stories')),
+    path('photos/', include('photos.urls', namespace='photos'))
 ]

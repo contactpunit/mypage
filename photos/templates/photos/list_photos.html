@@ -2,14 +2,15 @@
 {% block title %} My Photos {% endblock %}
 {% block body %}
 <h1> My Photos </h1>
-{% for photo in userphotos %}
+{% if userphotos %}
 <div>
-<!--    <a {% url href="media/{{photo.photo.url}}">-->
-    <a href="{{photo.photo.url}}">
-        {{photo.title}}
-    </a>
+    {% for photo in userphotos %}
+    <p>
+        <a href="{{photo.get_absolute_url}}">{{photo.title}}</a>
+    </p>
+    {% endfor %}
 </div>
-{% empty %}
-  <p>There are no photos</p>
-{% endfor %}
+{% else %}
+<p>There are no photos</p>
+{% endif %}
 {% endblock body %}

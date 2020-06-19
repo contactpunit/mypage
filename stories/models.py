@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
+from django.contrib.contenttypes.fields import GenericRelation
+from comments.models import Comment
 
 
 class Story(models.Model):
@@ -19,6 +21,7 @@ class Story(models.Model):
                               default='published')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
+    comments = GenericRelation(Comment)
 
     def get_absolute_url(self):
         return reverse('stories:detail_story',

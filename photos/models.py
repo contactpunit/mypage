@@ -4,6 +4,8 @@ from django.utils import timezone
 from django.urls import reverse
 import random
 import string
+from django.contrib.contenttypes.fields import GenericRelation
+from comments.models import Comment
 
 
 def generate_slug():
@@ -32,6 +34,7 @@ class Photos(models.Model):
     updated = models.DateTimeField(auto_now=True)
     photo = models.ImageField(upload_to='photos/%Y/%m/%d',
                               blank=False)
+    comments = GenericRelation(Comment)
 
     def get_absolute_url(self):
         return reverse('photos:detail_photo',

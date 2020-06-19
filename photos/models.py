@@ -34,11 +34,13 @@ class Photos(models.Model):
                               blank=False)
 
     def get_absolute_url(self):
-        return reverse('photos:detail_photo',
+        final = reverse('photos:detail_photo',
                        args=[self.publish.year,
                              self.publish.month,
                              self.publish.day,
                              self.slug])
+        print(final)
+        return final
 
     def __str__(self):
         return f'Photos uploaded by user {self.owner} with title {self.title}'

@@ -4,10 +4,10 @@
 <h1>Dashboard</h1>
 <p>Welcome to your Dashboard</p>
 <div class="Photos">
-    My Photos
+    <a href="{% url 'photos:list_photos' %}">My Photos</a>
 </div>
 <div class="Stories">
-    <a href="{% url 'stories:list_stories' %}">Stories</a>
+    <a href="{% url 'stories:list_stories' %}">My Stories</a>
 </div>
 <body>
 <div id="content">

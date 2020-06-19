@@ -4,7 +4,8 @@
 <h1> My Photos </h1>
 {% for photo in userphotos %}
 <div>
-    <a href="media/{{photo.photo}}">
+<!--    <a {% url href="media/{{photo.photo.url}}">-->
+    <a href="{{photo.photo.url}}">
         {{photo.title}}
     </a>
 </div>

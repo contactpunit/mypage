@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'stories',
     'comments',
     'photos',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [

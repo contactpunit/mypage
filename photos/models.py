@@ -2,14 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
-import random
-import string
+from utils.utilities import generate_slug
 from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
-
-
-def generate_slug():
-    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
 
 
 class Photos(models.Model):

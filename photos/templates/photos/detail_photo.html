@@ -33,7 +33,7 @@
   <h2>Your comment has been added</h2>
 {% else %}
   <h2>Add a new comment</h2>
-  <form action="{% url 'photos:detail_photo' year=year month=month day=day photo_slug=photo_slug %}" method="POST">
+  <form action="{% url 'photos:detail_photo' year=year month=month day=day %}" method="POST">
     {{ form.as_p }}
     {% csrf_token %}
     <p><input type="submit" value="Add comment"></p>

@@ -35,8 +35,7 @@ class Photos(models.Model):
         return reverse('photos:detail_photo',
                        args=[self.publish.year,
                              self.publish.month,
-                             self.publish.day,
-                             self.slug])
+                             self.publish.day])
 
     def __str__(self):
         return f'Photos uploaded by user {self.owner} with title {self.title}'

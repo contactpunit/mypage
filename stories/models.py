@@ -4,6 +4,7 @@ from django.utils import timezone
 from django.urls import reverse
 from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
+from utils.utilities import generate_slug
 
 
 class Story(models.Model):
@@ -13,9 +14,9 @@ class Story(models.Model):
     )
     title = models.CharField(max_length=120)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories_story')
-    slug = models.SlugField(max_length=250, unique_for_date='publish')
-    body = models.TextField()
     publish = models.DateTimeField(default=timezone.now)
+    slug = models.SlugField(max_length=250, unique_for_date='publish', default=generate_slug())
+    body = models.TextField()
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,
                               default='published')

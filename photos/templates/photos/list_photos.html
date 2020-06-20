@@ -1,0 +1,17 @@
+{% extends 'registration/base.html' %}
+{% block title %} My Photos {% endblock %}
+{% block body %}
+<h1> My Photos </h1>
+{% if userphotos %}
+<div>
+    {% for photo in userphotos %}
+    <p>
+        <a href="{{photo.get_absolute_url}}">{{photo.title}}</a>
+    </p>
+    {% endfor %}
+</div>
+{% else %}
+<p>There are no photos</p>
+{% endif %}
+<a href="{% url 'photos:add_photo' %}">Add Photo</a>
+{% endblock body %}

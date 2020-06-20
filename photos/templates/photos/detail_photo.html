@@ -1,0 +1,42 @@
+{% extends 'registration/base.html' %}
+{% block title %} {{pic.title}} {% endblock %}
+{% block body %}
+<h2> {{pic.title}} </h2>
+<br>
+
+<div>
+    {% load thumbnail %}
+    {% thumbnail pic.photo "300" as im %}
+    <a href="{{pic.photo.url}}">
+        <img src="{{ im.url}}" class="image-detail">
+    </a>
+    {% endthumbnail %}
+</div>
+{{pic.caption}}
+<br>
+
+{% with comments.count as total_comments %}
+<h2>
+    {{total_comments}} comments
+</h2>
+{% endwith %}
+{% for comment in comments %}
+<div>
+    <p>
+        From: {{ comment.name }}
+        Comment: {{ comment.body }}
+        Created on: {{comment.created}}
+    </p>
+</div>
+{% endfor %}
+{% if new_comment %}
+  <h2>Your comment has been added</h2>
+{% else %}
+  <h2>Add a new comment</h2>
+  <form action="{% url 'photos:detail_photo' year=year month=month day=day %}" method="POST">
+    {{ form.as_p }}
+    {% csrf_token %}
+    <p><input type="submit" value="Add comment"></p>
+  </form>
+{% endif %}
+{% endblock body %}

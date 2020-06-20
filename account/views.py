@@ -4,6 +4,7 @@ from .models import Profile
 from .forms import LoginForm, UserRegistrationForm, ProfileForm, UserForm
 from django.contrib.auth.decorators import login_required
 
+
 @login_required
 def dashboard(request):
     return render(request,
@@ -36,7 +37,7 @@ def register(request):
 
 
 @login_required
-def edit(request):
+def profile(request):
     if request.method == 'POST':
         userform = UserForm(instance=request.user,
                             data=request.POST)

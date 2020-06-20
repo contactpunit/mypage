@@ -1,0 +1,11 @@
+{% extends 'registration/base.html' %}
+{% block title %} Add Story {% endblock %}
+{% block body %}
+<h1> Add New Story </h1>
+<p>Please enter details to the story</p>
+<form action="." method="POST">
+    {{form.as_p}}
+    {% csrf_token %}
+    <p><input type="submit" value="Add"></p>
+</form>
+{% endblock body %}

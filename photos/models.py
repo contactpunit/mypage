@@ -2,14 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
-import random
-import string
+from utils.utilities import generate_slug
 from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
-
-
-def generate_slug():
-    return ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(6))
 
 
 class Photos(models.Model):
@@ -40,8 +35,7 @@ class Photos(models.Model):
         return reverse('photos:detail_photo',
                        args=[self.publish.year,
                              self.publish.month,
-                             self.publish.day,
-                             self.slug])
+                             self.publish.day])
 
     def __str__(self):
         return f'Photos uploaded by user {self.owner} with title {self.title}'

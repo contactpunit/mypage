@@ -1,7 +1,25 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import Photos
+from .forms import PhotoForm
 from comments.forms import CommentForm
+
+
+@login_required
+def add_photo(request):
+    if request.method == 'POST':
+        form = PhotoForm(data=request.POST, files=request.FILES)
+        if form.is_valid():
+            new_photo = form.save(commit=False)
+            new_photo.owner = request.user
+            new_photo.save()
+            return redirect(new_photo.get_absolute_url())
+        else:
+            form = PhotoForm()
+    else:
+        form = PhotoForm()
+    return render(request, 'photos/add_photo.html',
+                  {'form': form})
 
 
 @login_required
@@ -12,8 +30,8 @@ def get_user_photos(request):
 
 
 @login_required
-def photo_details(request, year, month, day, photo_slug):
-    pic = get_object_or_404(Photos, slug=photo_slug,
+def photo_details(request, year, month, day):
+    pic = get_object_or_404(Photos,
                             status='published',
                             publish__year=year,
                             publish__month=month,
@@ -37,5 +55,4 @@ def photo_details(request, year, month, day, photo_slug):
                    'year': year,
                    'month': month,
                    'day': day,
-                   'photo_slug': photo_slug
                    })

@@ -37,7 +37,7 @@ def register(request):
 
 
 @login_required
-def edit(request):
+def profile(request):
     if request.method == 'POST':
         userform = UserForm(instance=request.user,
                             data=request.POST)

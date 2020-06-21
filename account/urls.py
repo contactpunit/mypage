@@ -1,7 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from .views import dashboard, register, edit
-from django.urls import reverse_lazy
+from .views import dashboard, register, profile
+from django.urls import reverse_lazy, include
 
 app_name = 'account'
 
@@ -26,5 +26,7 @@ urlpatterns = [
     path('reset/done/', auth_views.PasswordResetCompleteView.as_view(),
          name='password_reset_complete'),
     path('register/', register, name='register'),
-    path('edit/', edit, name='edit'),
+    path('edit/', profile, name='profile'),
+    path('stories/', include('stories.urls', namespace='stories')),
+    path('photos/', include('photos.urls', namespace='photos'))
 ]

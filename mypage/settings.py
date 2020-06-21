@@ -30,7 +30,7 @@ LOGIN_URL = 'account:login'
 
 LOGOUT_URL = 'account:logout'
 
-LOGIN_REDIRECT_URL = 'account:dashboard'
+LOGIN_REDIRECT_URL = 'dashboard:front'
 
 LOGOUT_REDIRECT_URL = 'account:login'
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'comments',
     'photos',
     'sorl.thumbnail',
+    'dashboard',
 ]
 
 MIDDLEWARE = [

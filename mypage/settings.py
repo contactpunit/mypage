@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'comments',
     'photos',
     'sorl.thumbnail',
-    'dashboard'
+    'dashboard',
 ]
 
 MIDDLEWARE = [

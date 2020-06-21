@@ -8,7 +8,7 @@ urlpatterns = [
     path('stories/', include('stories.urls', namespace='stories')),
     path('photos/', include('photos.urls', namespace='photos')),
     path('account/', include('account.urls', namespace='account')),
-    path('', include('account.urls', namespace='front')),
+    path('', include('dashboard.urls', namespace='dashboard')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL,

@@ -1,13 +1,13 @@
-{% extends 'account/registration/base.html' %}
+{% extends 'registration/base.html' %}
 {% block title %} Dashboard {% endblock title %}
 {% block body %}
 <h1>Dashboard</h1>
 <p>Welcome to your Dashboard</p>
 <div class="Photos">
-    My Photos
+    <a href="{% url 'photos:list_photos' %}">My Photos</a>
 </div>
 <div class="Stories">
-    My Stories
+    <a href="{% url 'stories:list_stories' %}">My Stories</a>
 </div>
 <body>
 <div id="content">

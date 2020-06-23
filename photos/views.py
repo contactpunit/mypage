@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Photos
 from .forms import PhotoForm
 from comments.forms import CommentForm
@@ -25,8 +26,17 @@ def add_photo(request):
 @login_required
 def get_user_photos(request):
     userphotos = Photos.objects.filter(owner=request.user)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(userphotos, 4)
+    try:
+        photos = paginator.page(page)
+    except PageNotAnInteger:
+        photos = paginator.page(1)
+    except EmptyPage:
+        photos = paginator.page(paginator.num_pages)
     return render(request, 'photos/list_photos.html',
-                  {'userphotos': userphotos})
+                  {'userphotos': userphotos,
+                   'photos': photos})
 
 
 @login_required

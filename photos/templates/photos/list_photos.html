@@ -2,9 +2,9 @@
 {% block title %} My Photos {% endblock %}
 {% block body %}
 <h1> My Photos </h1>
-{% if userphotos %}
+{% if photos %}
 <div>
-    {% for photo in userphotos %}
+    {% for photo in photos %}
     <p>
         <a href="{{photo.get_absolute_url}}">{{photo.title}}</a>
     </p>
@@ -13,5 +13,6 @@
 {% else %}
 <p>There are no photos</p>
 {% endif %}
+{% include "registration/paginator.html" with page=photos %}
 <a href="{% url 'photos:add_photo' %}">Add Photo</a>
 {% endblock body %}

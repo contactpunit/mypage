@@ -15,7 +15,7 @@ class Story(models.Model):
     title = models.CharField(max_length=120)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories_story')
     publish = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(max_length=250, unique_for_date='publish', default=generate_slug())
+    slug = models.SlugField(max_length=250, unique_for_date='publish', unique=True, default=generate_slug())
     body = models.TextField()
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,

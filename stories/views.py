@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.utils import IntegrityError
 from .models import Story
 from comments.forms import CommentForm
 from stories.forms import StoryForm
@@ -24,19 +25,22 @@ def add_story(request):
 
 @login_required
 def get_all_stories(request):
-    allstories = Story.objects.filter(author=request.user)
-    page = request.GET.get('page', 1)
-    paginator = Paginator(allstories, 4)
     try:
-        stories = paginator.page(page)
-    except PageNotAnInteger:
-        stories = paginator.page(1)
-    except EmptyPage:
-        stories = paginator.page(paginator.num_pages)
-    return render(request, 'stories/list_stories.html',
-                  {'allstories': allstories,
-                   'page': page,
-                   'stories': stories})
+        allstories = Story.objects.filter(author=request.user)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(allstories, 4)
+        try:
+            stories = paginator.page(page)
+        except PageNotAnInteger:
+            stories = paginator.page(1)
+        except EmptyPage:
+            stories = paginator.page(paginator.num_pages)
+        return render(request, 'stories/list_stories.html',
+                      {'allstories': allstories,
+                       'page': page,
+                       'stories': stories})
+    except IntegrityError:
+        return HttpResponse("Error fetching stories")
 
 
 @login_required

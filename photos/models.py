@@ -37,5 +37,8 @@ class Photos(models.Model):
                              self.publish.month,
                              self.publish.day])
 
+    class Meta:
+        ordering = ('-publish',)
+
     def __str__(self):
         return f'Photos uploaded by user {self.owner} with title {self.title}'

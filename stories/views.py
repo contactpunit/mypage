@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Story
+from catagories.models import Categories
 from comments.forms import CommentForm
 from stories.forms import StoryForm
 
@@ -10,9 +11,11 @@ from stories.forms import StoryForm
 def add_story(request):
     if request.method == 'POST':
         form = StoryForm(request.POST)
+        current_category = Categories.objects.filter(category='Story')
         if form.is_valid():
             pending_form = form.save(commit=False)
             pending_form.author = request.user
+            pending_form.categoryid = current_category[0]
             pending_form.save()
             return redirect('stories:list_stories')
     else:

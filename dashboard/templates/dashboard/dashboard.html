@@ -3,17 +3,13 @@
 {% block body %}
 <h1>Dashboard</h1>
 <p>Welcome to your Dashboard</p>
-<!--<div class="Photos">-->
-<!--    <a href="{% url 'photos:list_photos' %}">My Photos</a>-->
-<!--</div>-->
-<!--<div class="Stories">-->
-<!--    <a href="{% url 'stories:list_stories' %}">My Stories</a>-->
-<!--</div>-->
 <div class="Artifacts">
-    <p>View Users Artifacts</p>
-    {% for user in other_users %}
+    <p>Choose by Category to view artifacts of other users</p>
+    {% for ctry in categories %}
     <ul>
-        <li><a href="{% url 'dashboard:get_all_artifacts' id=user.id user=user %}">{{user}}</a></li>
+        <li>
+            <a href="{% url 'dashboard:get_users_by_category' catgy=ctry.id ctryname=ctry.category %}">{{ctry.category}}</a>
+        </li>
     </ul>
     {% endfor %}
 </div>

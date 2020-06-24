@@ -26,8 +26,9 @@ def add_story(request):
 
 
 @login_required
-def get_all_stories(request):
-    allstories = Story.objects.filter(author=request.user)
+def get_all_stories(request, author=None):
+    author = author if author else request.user
+    allstories = Story.objects.filter(author=author)
     page = request.GET.get('page', 1)
     paginator = Paginator(allstories, 4)
     try:

@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from .views import get_all_stories, story_detail, add_story
 
 app_name = 'stories'
@@ -8,4 +8,5 @@ urlpatterns = [
     path('<int:year>/<int:month>/<int:day>/<slug:story>/',
          story_detail,
          name='detail_story'),
+    re_path(r'(?P<author>\d+)', get_all_stories, name='get_user_stories'),
 ]

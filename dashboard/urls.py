@@ -5,7 +5,8 @@ app_name = 'dashboard'
 
 urlpatterns = [
     path('', dashboard, name='front'),
-    path('<str:user>/artifacts/',
+    path('<int:id>/<str:user>/artifacts/',
          get_all_artifacts,
          name='get_all_artifacts')
 ]
+

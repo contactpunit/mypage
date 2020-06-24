@@ -3,19 +3,18 @@
 {% block body %}
 <h1>Dashboard</h1>
 <p>Welcome to your Dashboard</p>
-<div class="Photos">
-    <a href="{% url 'photos:list_photos' %}">My Photos</a>
-</div>
-<div class="Stories">
-    <a href="{% url 'stories:list_stories' %}">My Stories</a>
-</div>
+<!--<div class="Photos">-->
+<!--    <a href="{% url 'photos:list_photos' %}">My Photos</a>-->
+<!--</div>-->
+<!--<div class="Stories">-->
+<!--    <a href="{% url 'stories:list_stories' %}">My Stories</a>-->
+<!--</div>-->
 <div class="Artifacts">
     <p>View Users Artifacts</p>
     {% for user in other_users %}
     <ul>
-        <li><a href="{% url 'dashboard:get_all_artifacts' user %}">{{user}}</a></li>
+        <li><a href="{% url 'dashboard:get_all_artifacts' id=user.id user=user %}">{{user}}</a></li>
     </ul>
-
     {% endfor %}
 </div>
 <body>

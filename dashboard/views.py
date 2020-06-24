@@ -8,8 +8,16 @@ from photos.models import Photos
 app_name = 'dashboard'
 
 
+# @login_required
+# def dashboard(request):
+#     other_users = User.objects.filter(~Q(username=request.user) & ~Q(is_superuser=True))
+#     return render(request,
+#                   'dashboard/dashboard.html',
+#                   {'section': 'dashboard',
+#                    'other_users': other_users})
 @login_required
 def dashboard(request):
+    categories = ['stories']
     other_users = User.objects.filter(~Q(username=request.user) & ~Q(is_superuser=True))
     return render(request,
                   'dashboard/dashboard.html',
@@ -18,13 +26,13 @@ def dashboard(request):
 
 
 @login_required
-def get_all_artifacts(request, user):
-    print(user)
-    stories = Story.objects.filter(username=user)
-    photos = Photos.objects.filter(username=user)
+def get_all_artifacts(request, id=None, user=None):
+    stories = Story.objects.filter(author=id)
+    # photos = Photos.objects.filter(author=user)
     return render(request,
                   'dashboard/userartifacts.html',
                   {'user': user,
                    'stories': stories,
-                   'photos': photos
+                   'id': id
+                   # 'photos': photos
                    })

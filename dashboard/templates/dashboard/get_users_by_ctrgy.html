@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+{% block title %} Users {% endblock title %}
+{% block body %}
+<h1>Dashboard</h1>
+<p>Users</p>
+<div class="Artifacts">
+    <p>Select user whose {{ctryname}} to be seen</p>
+    {% for user in other_users %}
+    <ul>
+        {% if ctryname == 'Story' %}
+        <li><a href="{% url 'stories:get_user_stories' author=user.id %}">{{user}}</a></li>
+        {% elif ctryname == 'Photos' %}
+        <li><a href="{% url 'photos:get_all_photos' owner=user.id %}">{{user}}</a></li>
+        {% endif %}
+    </ul>
+    {% endfor %}
+</div>
+<body>
+<div id="content">
+
+</div>
+</body>
+{% endblock body %}

@@ -24,8 +24,9 @@ def add_photo(request):
 
 
 @login_required
-def get_user_photos(request):
-    userphotos = Photos.objects.filter(owner=request.user)
+def get_user_photos(request, owner=None):
+    owner = owner if owner else request.user
+    userphotos = Photos.objects.filter(owner=owner)
     page = request.GET.get('page', 1)
     paginator = Paginator(userphotos, 4)
     try:

@@ -5,6 +5,7 @@ from django.urls import reverse
 from utils.utilities import generate_slug
 from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
+from catagories.models import Categories
 
 
 class Photos(models.Model):
@@ -15,6 +16,8 @@ class Photos(models.Model):
     owner = models.ForeignKey(User,
                               on_delete=models.CASCADE,
                               related_name='photos_photo')
+    categoryid = models.ForeignKey(Categories, on_delete=models.CASCADE,
+                                   related_name='category_photo')
     title = models.CharField(max_length=120)
     slug = models.SlugField(max_length=250,
                             unique_for_date='publish',

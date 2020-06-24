@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Photos
 from .forms import PhotoForm
+from catagories.models import Categories
 from comments.forms import CommentForm
 
 
@@ -10,9 +11,11 @@ from comments.forms import CommentForm
 def add_photo(request):
     if request.method == 'POST':
         form = PhotoForm(data=request.POST, files=request.FILES)
+        current_category = Categories.objects.filter(category='Photos')
         if form.is_valid():
             new_photo = form.save(commit=False)
             new_photo.owner = request.user
+            new_photo.categoryid = current_category[0]
             new_photo.save()
             return redirect(new_photo.get_absolute_url())
         else:
@@ -24,8 +27,9 @@ def add_photo(request):
 
 
 @login_required
-def get_user_photos(request):
-    userphotos = Photos.objects.filter(owner=request.user)
+def get_user_photos(request, owner=None):
+    owner = owner if owner else request.user
+    userphotos = Photos.objects.filter(owner=owner)
     page = request.GET.get('page', 1)
     paginator = Paginator(userphotos, 4)
     try:

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.utils import IntegrityError
 from .models import Story
+from catagories.models import Categories
 from comments.forms import CommentForm
 from stories.forms import StoryForm
 
@@ -11,9 +12,11 @@ from stories.forms import StoryForm
 def add_story(request):
     if request.method == 'POST':
         form = StoryForm(request.POST)
+        current_category = Categories.objects.filter(category='Story')
         if form.is_valid():
             pending_form = form.save(commit=False)
             pending_form.author = request.user
+            pending_form.categoryid = current_category[0]
             pending_form.save()
             return redirect('stories:list_stories')
     else:
@@ -24,7 +27,11 @@ def add_story(request):
 
 
 @login_required
-def get_all_stories(request):
+def get_all_stories(request, author=None):
+    author = author if author else request.user
+    allstories = Story.objects.filter(author=author)
+    page = request.GET.get('page', 1)
+    paginator = Paginator(allstories, 4)
     try:
         allstories = Story.objects.filter(author=request.user)
         page = request.GET.get('page', 1)

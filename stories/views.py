@@ -23,7 +23,6 @@ def add_story(request):
 
 @login_required
 def get_all_stories(request):
-    print('i am called')
     allstories = Story.objects.filter(author=request.user)
     return render(request, 'stories/list_stories.html',
                   {'allstories': allstories})

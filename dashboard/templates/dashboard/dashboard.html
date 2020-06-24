@@ -9,6 +9,15 @@
 <div class="Stories">
     <a href="{% url 'stories:list_stories' %}">My Stories</a>
 </div>
+<div class="Artifacts">
+    <p>View Users Artifacts</p>
+    {% for user in other_users %}
+    <ul>
+        <li><a href="{% url 'dashboard:get_all_artifacts' user %}">{{user}}</a></li>
+    </ul>
+
+    {% endfor %}
+</div>
 <body>
 <div id="content">
 

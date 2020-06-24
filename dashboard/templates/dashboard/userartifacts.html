@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+{% block title %} {{user}} {% endblock title %}
+{% block body %}
+<h1>{{user}}</h1>
+<p>{{user Artifacts}}</p>
+<!--<div class="Photos">-->
+<!--    <a href="{% url 'photos:list_photos' %}">My Photos</a>-->
+<!--</div>-->
+{% for story in stories %}
+<div>
+    <a href="{{story.get_absolute_url}}">
+        {{story.title}}
+    </a>
+</div>
+{% empty %}
+  <p>There are no stories</p>
+{% endfor %}
+<body>
+<div id="content">
+
+</div>
+</body>
+{% endblock body %}

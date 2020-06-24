@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Categories
 
-# Register your models here.
+
+@admin.register(Categories)
+class StoryAdmin(admin.ModelAdmin):
+    list_display = ['category']

@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'photos',
     'sorl.thumbnail',
     'dashboard',
+    'catagories',
 ]
 
 MIDDLEWARE = [

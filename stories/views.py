@@ -27,15 +27,11 @@ def add_story(request):
 
 
 @login_required
-def get_all_stories(request, author=None):
-    author = author if author else request.user
-    allstories = Story.objects.filter(author=author)
-    page = request.GET.get('page', 1)
-    paginator = Paginator(allstories, 4)
+def get_all_stories(request):
     try:
         allstories = Story.objects.filter(author=request.user)
         page = request.GET.get('page', 1)
-        paginator = Paginator(allstories, 4)
+        paginator = Paginator(allstories, 3)
         try:
             stories = paginator.page(page)
         except PageNotAnInteger:
@@ -74,3 +70,22 @@ def story_detail(request, year, month, day, story):
                    'form': form,
                    'new_comment': new_comment
                    })
+
+
+def get_others_stories(request, author):
+    try:
+        others_stories = Story.objects.filter(author=author)
+        page = request.GET.get('page', 1)
+        paginator = Paginator(others_stories, 3)
+        try:
+            stories = paginator.page(page)
+        except PageNotAnInteger:
+            stories = paginator.page(1)
+        except EmptyPage:
+            stories = paginator.page(paginator.num_pages)
+        return render(request, 'stories/list_other_stories.html',
+                      {'other_stories': others_stories,
+                       'page': page,
+                       'stories': stories})
+    except IntegrityError:
+        return HttpResponse("Error fetching stories")

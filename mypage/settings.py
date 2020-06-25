@@ -30,9 +30,9 @@ LOGIN_URL = 'account:login'
 
 LOGOUT_URL = 'account:logout'
 
-LOGIN_REDIRECT_URL = 'dashboard:front'
+LOGIN_REDIRECT_URL = 'dashboard:dashboard'
 
-LOGOUT_REDIRECT_URL = 'account:login'
+LOGOUT_REDIRECT_URL = 'dashboard:front'
 
 # Application definition
 

@@ -1,10 +1,12 @@
 from django.urls import path
-from .views import dashboard, get_all_artifacts, get_users_by_category
+from .views import dashboard, get_all_artifacts, get_users_by_category, homepage
 
 app_name = 'dashboard'
 
 urlpatterns = [
-    path('', dashboard, name='front'),
+    # path('', dashboard, name='front'),
+    path('', homepage, name='front'),
+    path('dashboard/', dashboard, name='dashboard'),
     path('<int:id>/<str:user>/artifacts/',
          get_all_artifacts,
          name='get_all_artifacts'),

@@ -1,6 +1,6 @@
 {% extends 'registration/base.html' %}
 {% block title %} {{pic.title}} {% endblock %}
-{% block body %}
+{% block bodyheader %}
 <h2> {{pic.title}} </h2>
 <br>
 
@@ -39,4 +39,4 @@
     <p><input type="submit" value="Add comment"></p>
   </form>
 {% endif %}
-{% endblock body %}
+{% endblock bodyheader %}

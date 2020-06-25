@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+</head>
+<body>
+<div class="container">
+    <header>
+        <img src="{% static 'images/logo.png' %}" class="bordered-image" rel="My Logo"/>
+        <nav>
+            {% if request.user.is_authenticated %}
+            <ul class="menu" >
+                <li {% if section == "Profile" %} class="selected" {% endif %} >
+                <a href="{% url 'account:profile' %}">Edit Profile</a>
+                </li>
+
+                <li {% if section == "dashboard" %} class="selected" {% endif %} >
+
+                <a href="{% url 'dashboard:front' %}">My Dashboard</a>
+                </li>
+                <li {% if section == "photos" %}class="selected" {% endif %}>
+                <a href="{% url 'photos:list_photos' %}">My Photos</a>
+                </li>
+                <li {% if section == "stories" %}class="selected" {% endif %}>
+                <a href="{% url 'stories:list_stories' %}">My Stories</a>
+                </li>
+            </ul>
+        {% endif %}
+        <span class="user">
+        {% if request.user.is_authenticated %}
+          Hello {{request.user.username}}.
+          <a href="{% url 'account:logout' %}">Logout</a>
+        {% else %}
+          <a href="{% url 'account:login' %}">Login</a>
+        {% endif %}
+        </span>
+        </nav>
+
+    </header>
+<section>
+    {% block body %}
+    {% endblock body %}
+</section>
+<footer>
+    <p>Copyright &copy; {% now "Y" %} <strong>Punit Jain</strong>. All Rights Reserved.</p>
+</footer>
+</div>
+</body>
+</html>

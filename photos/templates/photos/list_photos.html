@@ -1,6 +1,6 @@
 {% extends 'registration/base.html' %}
 {% block title %} My Photos {% endblock %}
-{% block body %}
+{% block bodyheader %}
 <div id="addnew">
     <a href="{% url 'photos:add_photo' %}" style="float: right;">Add Photos</a>
 </div>
@@ -17,4 +17,4 @@
 <p>There are no photos</p>
 {% endif %}
 {% include "registration/paginator.html" with page=photos %}
-{% endblock body %}
+{% endblock bodyheader %}

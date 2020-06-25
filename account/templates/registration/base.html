@@ -1,53 +1,72 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 {% load static %}
 <head>
-    <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}"/>
+    <title>{% block title %}Sparkling Kids{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{% static 'commonCSS.css' %}"/>
 </head>
 <body>
-<div class="container">
-    <header>
-        <img src="{% static 'images/logo.png' %}" class="bordered-image" rel="My Logo"/>
-        <nav>
+<div class="content">
+    <div class="header">
+        <img src="{% static 'images/logo.jpg' %}" class="logo">
+        <nav class="navg">
             {% if request.user.is_authenticated %}
-            <ul class="menu" >
-                <li {% if section == "Profile" %} class="selected" {% endif %} >
-                <a href="{% url 'account:profile' %}">Edit Profile</a>
-                </li>
-
-                <li {% if section == "dashboard" %} class="selected" {% endif %} >
-
-                <a href="{% url 'dashboard:front' %}">My Dashboard</a>
-                </li>
-                <li {% if section == "photos" %}class="selected" {% endif %}>
-                <a href="{% url 'photos:list_photos' %}">My Photos</a>
-                </li>
-                <li {% if section == "stories" %}class="selected" {% endif %}>
-                <a href="{% url 'stories:list_stories' %}">My Stories</a>
-                </li>
-            </ul>
-        {% endif %}
-        <span class="user">
-        {% if request.user.is_authenticated %}
-          Hello {{request.user.username}}.
-          <a href="{% url 'account:logout' %}">Logout</a>
-        {% else %}
-          <a href="{% url 'account:login' %}">Login</a>
-        {% endif %}
-        </span>
+                <a href="{% url 'account:profile' %}">
+                    <div class="links">Edit<br>Profile</div>
+                </a>
+                <a href="{% url 'photos:list_photos' %}">
+                    <div class="links">My Photos</div>
+                </a>
+                <a href="{% url 'stories:list_stories' %}">
+                    <div class="links">My Stories</div>
+                </a>
+                <a href="{% url 'account:logout' %}">
+                    <div class="links">Logout</div>
+                </a>
+            {% else %}
+                <div class="links" style="background:#FF7500; color:white">HOME<br>SparklingKids</div>
+                <a href="{% url 'account:login' %}">
+                    <div class="links">LOGIN<br>Sign in</div>
+                </a>
+                <a href="{% url 'account:register' %}">
+                    <div class="links">NEW USER<br>Register</div>
+                </a>
+                <a href="">
+                    <div class="links">ABOUT US<br>Contact us</div>
+                </a>
+            {% endif %}
         </nav>
-
-    </header>
-<section>
-    {% block body %}
-    {% endblock body %}
-</section>
-<footer>
-    <p>Copyright &copy; {% now "Y" %} <strong>Punit Jain</strong>. All Rights Reserved.</p>
-</footer>
+    </div>
+    {% block bodyheader %}
+    <div class="maincontent">
+        <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg1.jpg' %}"/></div>
+        <div class="mySlides fade1"><img class="image1" src="{% static 'images/homebkg8.jpg' %}"/></div>
+        <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg2.jpg' %}"/></div>
+        <div class="staticcontent">Welcome to Sparklingstars.com. A site where you can upload and showcase your
+            talent.
+        </div>
+    </div>
 </div>
+<script>
+var slideIndex = 0;
+function showSlides() 
+{
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) 
+  {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  slides[slideIndex-1].style.display = "block";  
+  setTimeout(showSlides, 3000); // Change image every 3 seconds
+    
+}
+showSlides();
+
+</script>
+{% endblock bodyheader %}
 </body>
 </html>

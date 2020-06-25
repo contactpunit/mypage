@@ -1,6 +1,6 @@
 {% extends 'registration/base.html' %}
 {% block title %}User Registration Form{% endblock title %}
-{% block body %}
+{% block bodyheader %}
 <h1>User Registration Form</h1>
 <p>Please fill below form to register.</p>
 <form action="." method="POST">
@@ -8,4 +8,4 @@
     {% csrf_token %}
     <p><input type="submit" value="Create my Account"></p>
 </form>
-{% endblock body %}
+{% endblock bodyheader %}

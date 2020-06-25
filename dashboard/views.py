@@ -8,6 +8,11 @@ from catagories.models import Categories
 app_name = 'dashboard'
 
 
+def homepage(request):
+    return render(request,
+                  'dashboard/front.html')
+
+
 @login_required
 def dashboard(request):
     ctgry = Categories.objects.all()

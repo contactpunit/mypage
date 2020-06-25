@@ -1,6 +1,6 @@
 {% extends 'registration/base.html' %}
 {% block title %}Edit Profile{% endblock title %}
-{% block body %}
+{% block bodyheader %}
 <h1>Edit Profile</h1>
 <p>You can edit your profile using following form.</p>
 <form action="." method="POST" enctype="multipart/form-data">
@@ -9,4 +9,4 @@
     {{profileform.as_p}}
     <p><input type="submit" value="Save Changes"></p>
 </form>
-{% endblock body %}
+{% endblock bodyheader %}

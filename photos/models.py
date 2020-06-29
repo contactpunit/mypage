@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse
 from utils.utilities import generate_slug
+from django.conf import settings
 from django.contrib.contenttypes.fields import GenericRelation
 from comments.models import Comment
 from catagories.models import Categories
@@ -33,12 +34,16 @@ class Photos(models.Model):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d',
                               blank=False)
     comments = GenericRelation(Comment)
+    # users_like = models.ManyToManyField(settings.AUTH_USER_MODEL,
+    #                                     related_name='images_liked',
+    #                                     blank=True)
 
     def get_absolute_url(self):
         return reverse('photos:detail_photo',
                        args=[self.publish.year,
                              self.publish.month,
-                             self.publish.day])
+                             self.publish.day,
+                             self.slug])
 
     class Meta:
         ordering = ('-publish',)

@@ -72,6 +72,7 @@ def story_detail(request, year, month, day, story):
                    })
 
 
+@login_required
 def get_others_stories(request, author):
     try:
         others_stories = Story.objects.filter(author=author)

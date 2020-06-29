@@ -1,89 +1,106 @@
        body
        {
-        background-image:url("images/41.jpg");
+       background-image:url("images/background.png");
+        background-color: #FFE4C4; 
         background-size: cover;
         background-repeat: repeat;
         font-family:"Comic Sans MS", cursive, sans-serif;
-        margin-left:6%;
-        margin-top:0px;
-        margin-bottom:0px;
+        margin:0 0 0 0px;
+             
        }
       
        .content
         {
-         height:100%;
-         width:90%;
-         margin-left:2%;
-         border:0px solid black;
+	     height:650px;
+         max-height:680px;
+         width:86%;
+         margin-left:7%;
+         margin-bottom:0px;
+         background-color: #c2f0f0;
+		 border:0px solid black;
         }
        
       .header
 	{ 
-	height:170px;
-	
-        background-color: #E1F5A9;
+	    height:18%;
+        background-color: #c2f0f0;
+        border-bottom:2px dotted #DB3385;
+        }
+       
+        .maincontent
+       {
+        height:78%;
+        background:white;
+        position:auto;
+        margin :0 0 0 0px;
+		border:0px solid black;
+       }
+
+        
+        .footer
+		{ 
+		height:4%;
+        background-color: #c2f0f0;
+        
         }
       
-       .logo{  
-        width: 120px; 
+       .logo{
+         background-size: cover;
+        width: 160px; 
         height: 110px;  
         position:absolute;
-        border: 2px dotted #FF4500;
+        border: 2px dotted #DB3385;
         border-radius:15px;
-        top:5%; 
-        left:15%;              
+        top:2%; 
+        left:10%;              
         } 
 
        .navg
         {
          width: 500px; 
-       	 height: 105px;  
-         margin-left:560px;  
+       	 height: 100px;  
+         margin-left:640px;  
          float:top;  
-         padding-top:60px;
+         padding-top:35px;
         }
 
         .links
          {
-                width: 100px; 
-       		height: 50px;  
-       		border:1px dotted grey;
+                width: 105px; 
+				height: 42px;  
+				border:1px dotted grey;
                 text-align:center; 
-                padding-top:15px;
+                padding-top:12px;
                 float:left; 
                 margin-left:5px;  
                 font-family: Arial, Helvetica,sans-serif;
+                border-radius:10px;
          }
         
         .navg a
         {     
         	color:darkgrey;
         	font-family: Arial, Helvetica,sans-serif;
-        	font-size:14px;
-                
+        	font-size:15px;   
        }
 
        .navg a :hover
        {	  
           cursor:pointer;
-          background: #6699ff;
+          background: #00BD97;
           color:white; 
        }
 
-       .maincontent
-       {
-        height:485px;
-        background:white;
-       }
-
+     
      .image1
      {
           
           position:absolute;
-          width: 390px;
+          width: 380px;
           height: 360px;
           margin-top:5%;
-          margin-left:10%;    
+          margin-left:12%;
+          border: 0px solid black;		  
     }
 
    
@@ -92,31 +109,42 @@
           width: 440px;
           height: 300px;
           top:45%;
-          left:55%;
-          border:0px solid red; 
+          left:52%;
           position:absolute;
           font-size:28px;
           color:darkblue;
     }
 
+
       .bkg
        {
-          background-position: center;
-	  background-size: cover;
-          margin-left:10%;
-          position:absolute;
-          height: 70%;
-          width:60%;
-          opacity:.4;
+			background-image:url("images/backgrdimage.jpg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: cover;
+			margin-left:13%;
+			position:absolute;
+			height: 510px;
+			width:800px;
+			opacity:.4;
+			border:0px solid red; 
        }   
 
+  
        h1{		
           margin-top:3%;
-          margin-left:25%;
-	  margin-bottom:10px;
+          margin-left:24%;
+		  margin-bottom:10px;
           font-size: 35px;
           color:darkblue;  
          }	
+		  
+		h2
+        {
+		 
+         font-size: 28px;
+         color:darkgrey;  
+		}			
 
       .loginbox{
           color:"#0B2161";
@@ -125,7 +153,7 @@
           width: 460px;
           height: 310px;
           top:35%;
-          left:35%;
+          left:33%;
           border:1px dashed darkgrey;
          }	
   
@@ -162,7 +190,7 @@
           border-radius:20px;
           border : 2px solid white;
           margin-top:30px;
-	  margin-bottom:15px;
+		  margin-bottom:15px;
           width:65%;
           margin-left:70px;
        }
@@ -176,15 +204,15 @@
       
       .loginbox a
       {     
-          font-size:16px;
-          font-style:italic;
-	  margin-left:150px;
-          color:#0088FF;
+        font-size:16px;
+        font-style:italic;
+		margin-left:150px;
+        color:black;
       }
 
       .loginbox a:hover
       {	
-        color:orange;
+        color:#DB3385;
       }	
     
      .mySlides {}
@@ -193,46 +221,159 @@
      .fade 
       {
         -webkit-animation-name: fade;
-  	-webkit-animation-duration: 3s;
-  	animation-name: fade;
-  	animation-duration: 3s;
+		-webkit-animation-duration: 3s;
+		animation-name: fade;
+		animation-duration: 3s;
       }
 
      .fade1
       {
          -webkit-animation-name: fade1;
-  	-webkit-animation-duration: 3s;
-  	animation-name: fade1;
-  	animation-duration: 3s;
-        transition-timing-function: ease-in;
+		-webkit-animation-duration: 3s;
+		animation-name: fade1;
+		animation-duration: 3s;
+        
       }
 
      @keyframes fade 
       {
-  	 from {transform: scale(.8)} 
+		from {transform: scale(.7)} 
          to  {transform: scale(1)}
       }
      @-webkit-keyframes fade 
      {
-        from {transform: scale(.8)} 
+        from {transform: scale(.7)} 
          to  {transform: scale(1)}
-     }
-
-      
-     @-webkit-keyframes fade1 
-     {
-        from {transform: translateX(20px)} 
-         to  {transform: translateX(0px)}
      }
 
       @keyframes fade1
       {
-  	from {transform: translateX(20px)} 
-         to  {transform: translateX(0px)}
+		from {transform: translate(-50px)} 
+         to  {transform: translate(50px)}
+	  }
+	  
+     @-webkit-keyframes fade1 
+     {
+        from {transform: translateZ(20px)} 
+         to  {transform: translateZ(0px)}
+     }
+	 
+	 @keyframes fade2 
+      {
+		from {transform: scale(.7)} 
+         to  {transform: scale(1)}
       }
+     @-webkit-keyframes fade2
+     {
+        from {transform: scale(.7)} 
+         to  {transform: scale(1)}
+     }
 
       /* On smaller screens, decrease text size */
        @media only screen and (max-width: 300px) 
       {
   	.text {font-size: 11px}
-      }
+      }    
+
+
+      .browseby
+       {
+        width:20%;
+        height:100%;
+        background:white;
+        border:0px solid black;
+        display: inline-block;
+        padding:0 0 0 0px;
+        margin:0 0 0 0px;
+       }
+
+              
+       .link1
+         {
+            width: 190px; 
+       		height: 50px;  
+       		border:1px dotted grey;
+            border-radius: 0px 30px 30px 0px;
+            text-align:center; 
+            padding-top:27px;
+            color:white;
+            float:left;
+            margin-left:1px;
+            margin-bottom:4px;
+            box-shadow: 2px 2px #999;
+         }
+        
+        .link1:active {
+  		
+  		box-shadow: 0 2px #666;
+  		transform: translateY(3px);
+        }
+		
+		.mydetails
+		{
+        width:79%;
+        height:100%;
+        background:white;
+        margin:0 0 0 0px;
+        float:right;
+		}
+
+        .profile
+		{
+        height:120px;
+        margin-top:5px;
+		}
+ 
+        .profilepic
+		{
+			height:120px;
+			margin-top:3px;
+			border-radius:60px;
+			margin-left:320px;
+		}
+       .category
+       {
+        height:140px;
+        margin-top:7px;
+        margin-right:60px;
+        margin-left:10px;
+       }
+
+        .gallery1
+        {
+			margin-right:12px;
+			margin-left:12px;
+            margin-top:15px;
+			border: 1px solid #ccc;
+			float: left;
+			width: 110px;
+            height:110px;
+			
+         }
+      
+        .img1
+        {
+             width: 110px;
+             height:110px;
+			
+        }
+		
+        .img
+        {
+             width: 125px;
+             height:125px;
+        }
+         
+       .gallery
+        {
+			margin-right:8px;
+			margin-left:8px;
+            margin-top:7px;
+			border: 1px solid #ccc;
+			float: left;
+			width: 125px;
+            height:125px;
+         }
+      
+         
+ 

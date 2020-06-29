@@ -1,36 +1,18 @@
 {% extends 'registration/base.html' %}
 <body>
-<div class="content">
-    <div class="header">
-        <img src="images/logo.jpg" class="logo">
-        <nav class="navg">
-            <a href="home.html">
-                <div class="links">HOME<br>SparklingKids</div>
-            </a>
-            <div class="links" style="background:#FF7500; color:white">LOGIN<br>Sign in</div>
-            <a href="">
-                <div class="links">NEW USER<br>Register</div>
-            </a>
-            <a href="">
-                <div class="links">ABOUT US<br>Contact us</div>
-            </a>
-        </nav>
+{% block bodyheader %}
+<div class="maincontent">
+    <div class="bkg"></div>
+    <div class="loginbox">
+        <h1>Welcome Back!</h1>
+        <form action="{% url 'account:login' %}" method="POST">
+            {{form.as_p}}
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{next}}"/>
+            <p><input type="submit" value="Log In"></p>
+        </form>
+        <a href="{% url 'account:password_reset' %}">Forgot password?</a>
     </div>
-    {% block bodyheader %}
-    <div class="maincontent">
-
-        <div class="loginbox">
-            <h1>Welcome Back!</h1>
-            <form action="{% url 'account:login' %}" method="POST">
-                {{form.as_p}}
-                {% csrf_token %}
-                <input type="hidden" name="next" value="{{next}}"/>
-                <p><input type="submit" value="Log In"></p>
-            </form>
-        </div>
-    </div>
-    {% endblock bodyheader %}
 </div>
-
+{% endblock bodyheader %}
 </body>
-</html>

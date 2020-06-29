@@ -1,6 +1,6 @@
 {% extends 'registration/base.html' %}
 {% block title %} Add Photo {% endblock %}
-{% block body %}
+{% block bodyheader %}
 <h1> Add New Photo </h1>
 <p>Please enter details and path for your photo</p>
 <form method="POST" enctype="multipart/form-data">
@@ -8,4 +8,4 @@
     {% csrf_token %}
     <p><input type="submit" value="Upload"></p>
 </form>
-{% endblock body %}
+{% endblock bodyheader %}

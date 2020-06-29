@@ -44,8 +44,9 @@ def get_user_photos(request, owner=None):
 
 
 @login_required
-def photo_details(request, year, month, day):
+def photo_details(request, year, month, day, photo):
     pic = get_object_or_404(Photos,
+                            slug=photo,
                             status='published',
                             publish__year=year,
                             publish__month=month,

@@ -1,21 +1,72 @@
 {% extends 'registration/base.html' %}
-{% block title %} Dashboard {% endblock title %}
-{% block bodyheader %}
-<h1>Dashboard</h1>
-<p>Welcome to your Dashboard</p>
-<div class="Artifacts">
-    <p>Choose by Category to view artifacts of other users</p>
-    {% for ctry in categories %}
-    <ul>
-        <li>
-            <a href="{% url 'dashboard:get_users_by_category' catgy=ctry.id ctryname=ctry.category %}">{{ctry.category}}</a>
-        </li>
-    </ul>
-    {% endfor %}
-</div>
+{% load static %}
 <body>
-<div id="content">
+{% block bodyheader %}
 
+<div class="maincontent">
+    <div class="browseby">
+        <h2><br>&nbsp;&nbsp;Browse By</h2>
+        <a href="">
+            <div class="link1" style="background:#F5BCA8">PAINTINGS</div>
+        </a>
+        <a href="">
+            <div class="link1" style="background:#A8BBF5">STORIES</div>
+        </a>
+        <a href="">
+            <div class="link1" style="background:#E3A8F5">USERS</div>
+        </a>
+        <a href="">
+            <div class="link1" style="background:#A7E0F5">COMING<br>SOON</div>
+        </a>
+    </div>
+    <div class="mydetails">
+        <div class="profile">
+            <img src="{% static 'images/profile.jpg' %}" class="profilepic">
+        </div>
+        <div class="category" style="background:#F8D0C2">
+            <div class="gallery1">
+                <img src="{% static 'images/painting.jpg' %}" class="img1">
+            </div>
+            <a target="_blank" href="images/logo1.jpg">
+                <div class="gallery">
+                    <img src="{% static 'images/logo1.jpg' %}" class="img">
+                </div>
+            </a>
+            <a target="_blank" href="images/logo1.jpg">
+                <div class="gallery">
+                    <img src="{% static 'images/logo1.jpg' %}" class="img">
+                </div>
+            </a>
+            <a target="_blank" href="images/logo1.jpg">
+                <div class="gallery">
+                    <img src="{% static 'images/logo1.jpg' %}" class="img">
+                </div>
+            </a>
+            <a target="_blank" href="images/logo1.jpg">
+                <div class="gallery1"><h2>&nbsp;&nbsp;&nbsp;+<br>MORE</h2></div>
+            </a>
+        </div>
+        <div class="category" style="background:#CBD6F9">
+            <div class="gallery1">
+                <img src="{% static 'images/story.jpg' %}" class="img1">
+            </div>
+            <a target="_blank" href="images/logo1.jpg">
+                <div class="gallery">
+                    <img src="{% static 'images/logo1.jpg' %}" class="img">
+                </div>
+            </a>
+            <a target="_blank" href="images/logo1.jpg">
+                <div class="gallery">
+                    <img src="{% static 'images/logo1.jpg' %}" class="img">
+                </div>
+            </a>
+            <a target="_blank" href="images/logo1.jpg">
+                <div class="gallery">
+                    <img src="{% static 'images/logo1.jpg' %}" class="img">
+                </div>
+            </a>
+        </div>
+    </div>
 </div>
-</body>
 {% endblock bodyheader %}
+</body>

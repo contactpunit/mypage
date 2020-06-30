@@ -1,8 +1,9 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.contrib.auth.models import User
 from stories.models import Story
+from account.models import Profile
 from catagories.models import Categories
 
 app_name = 'dashboard'
@@ -45,3 +46,20 @@ def get_users_by_category(request, catgy=None, ctryname=None):
                    'catgy': catgy,
                    'ctryname': ctryname
                    })
+
+
+@login_required
+def byusers(request):
+    all_users = User.objects.filter(~Q(username=request.user) & ~Q(is_superuser=True))
+    all_profiles = Profile.objects.all()
+    profile_map = {user: profile
+                   for user in all_users
+                   for profile in all_profiles
+                   if user.id == profile.user.id
+                   }
+    print(profile_map)
+    return render(request,
+                  'dashboard/all_users.html',
+                  {'profile_map': profile_map,
+                   })
+

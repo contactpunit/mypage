@@ -1,20 +1,28 @@
 {% extends 'registration/base.html' %}
+{% load thumbnail %}
 {% block title %} My Photos {% endblock %}
 {% block bodyheader %}
-<div id="addnew">
-    <a href="{% url 'photos:add_photo' %}" style="float: right;">Add Photos</a>
+<div class="maincontent">
+    <div id="addnew">
+        <a href="{% url 'photos:add_photo' %}" style="float: right;">Add Photos</a>
+    </div>
+    <h1> My Photos </h1>
+    {% if photos %}
+    <div>
+        {% for photo in photos %}
+        <div>
+            {{photo.title}}
+            <a href="{{photo.get_absolute_url}}">
+                {% thumbnail photo.photo "140x140" crop="100%" as im %}
+                <img src="{{ im.url }}">
+                {% endthumbnail %}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p>There are no photos</p>
+    {% endif %}
+    {% include "registration/paginator.html" with page=photos %}
+    {% endblock bodyheader %}
 </div>
-<h1> My Photos </h1>
-{% if photos %}
-<div>
-    {% for photo in photos %}
-    <p>
-        <a href="{{photo.get_absolute_url}}">{{photo.title}}</a>
-    </p>
-    {% endfor %}
-</div>
-{% else %}
-<p>There are no photos</p>
-{% endif %}
-{% include "registration/paginator.html" with page=photos %}
-{% endblock bodyheader %}

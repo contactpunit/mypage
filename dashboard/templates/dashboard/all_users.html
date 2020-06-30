@@ -1,0 +1,23 @@
+{% extends 'registration/base.html' %}
+{% load thumbnail %}
+
+{% block title %} Users {% endblock title %}
+<body>
+{% block bodyheader %}
+<div class="maincontent">
+    <div class="bkg"></div>
+    <div>
+        {% for user, profile in profile_map.items %}
+        <div>
+            {{user.first_name}}
+            <a href="#">
+                {% thumbnail profile.photo "140x140" crop="100%" as im %}
+                <img src="{{ im.url }}">
+                {% endthumbnail %}
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock bodyheader %}
+</body>

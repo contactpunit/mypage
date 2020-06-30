@@ -1,19 +1,24 @@
 {% extends 'registration/base.html' %}
+{% load thumbnail %}
 {% block title %} My Stories {% endblock %}
+<body>
 {% block bodyheader %}
-<h1> My Stories </h1>
-<div id="addnew">
-    <a href="{% url 'stories:add_story' %}" style="float: right;">Add Story</a>
+<div class="maincontent">
+    <h1> My Stories </h1>
+    <div id="addnew">
+        <a href="{% url 'stories:add_story' %}" style="float: right;">Add Story</a>
+    </div>
+    {% for story in stories %}
+    <div>
+        <a href="{{story.get_absolute_url}}">
+            {{story.title}}
+        </a>
+    </div>
+    {% empty %}
+    <p>There are no stories</p>
+    {% endfor %}
+    <br>
+    {% include "registration/paginator.html" with page=stories %}
+    {% endblock bodyheader %}
 </div>
-{% for story in stories %}
-<div>
-    <a href="{{story.get_absolute_url}}">
-        {{story.title}}
-    </a>
-</div>
-{% empty %}
-<p>There are no stories</p>
-{% endfor %}
-<br>
-{% include "registration/paginator.html" with page=stories %}
-{% endblock bodyheader %}
+</body>

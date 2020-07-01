@@ -16,10 +16,11 @@ class Story(models.Model):
     title = models.CharField(max_length=120)
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='stories_story')
     categoryid = models.ForeignKey(Categories, on_delete=models.CASCADE,
-                                 related_name='category_type')
+                                   related_name='category_type')
     publish = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(max_length=250, unique_for_date='publish', unique=True, default=generate_slug())
-    body = models.TextField()
+    story = models.FileField(upload_to='stories/%Y/%m/%d',
+                             blank=False)
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,
                               default='published')

@@ -4,6 +4,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from stories.models import Story
 from account.models import Profile
+from photos.models import Photos
 from catagories.models import Categories
 
 app_name = 'dashboard'
@@ -16,12 +17,27 @@ def homepage(request):
 
 @login_required
 def dashboard(request):
+    altimage = False
+    dashboard_pics = []
     ctgry = Categories.objects.all()
-    # other_users = User.objects.filter(~Q(username=request.user) & ~Q(is_superuser=True))
+    stories = Story.objects.filter(author=request.user.id)
+    pics = Photos.objects.filter(owner=request.user.id)
+    if pics:
+        if len(pics) >= 2:
+            dashboard_pics = pics[:2]
+        else:
+            dashboard_pics = pics
+    else:
+        altimage = True
     return render(request,
                   'dashboard/dashboard.html',
                   {'section': 'dashboard',
-                   'categories': ctgry})
+                   'user': request.user,
+                   'stories': stories,
+                   'pics': pics,
+                   'altimage': altimage,
+                   'dashboard_pics': dashboard_pics,
+                   })
 
 
 @login_required
@@ -57,9 +73,16 @@ def byusers(request):
                    for profile in all_profiles
                    if user.id == profile.user.id
                    }
-    print(profile_map)
     return render(request,
                   'dashboard/all_users.html',
                   {'profile_map': profile_map,
                    })
 
+
+@login_required
+def artifact_details(request):
+    pics = Photos.objects.filter(owner=request.user.id)
+    return render(request,
+                  'dashboard/storypainting.html',
+                  {'pics': pics,
+                   'ctry': 'photo'})

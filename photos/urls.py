@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import get_user_photos, photo_details, add_photo
+from .views import get_user_photos, photo_details, add_photo, photo_like
 
 app_name = 'photos'
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
          photo_details,
          name='detail_photo'),
     re_path(r'(?P<owner>\d+)', get_user_photos, name='get_all_photos'),
+    path('like/', photo_like, name='photo_like')
 ]

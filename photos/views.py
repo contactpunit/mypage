@@ -1,6 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import JsonResponse
+from django.views.decorators.http import require_POST
 from .models import Photos
 from .forms import PhotoForm
 from catagories.models import Categories
@@ -71,3 +73,21 @@ def photo_details(request, year, month, day, photo):
                    'month': month,
                    'day': day,
                    })
+
+
+@login_required
+@require_POST
+def photo_like(request):
+    pic_id = request.POST.get('id')
+    action = request.POST.get('action')
+    if pic_id and action:
+        try:
+            pic = Photos.objects.get(id=pic_id)
+            if action == 'like':
+                pic.users_like.add(request.user)
+            else:
+                pic.users_like.remove(request.user)
+            return JsonResponse({'status': 'ok'})
+        except:
+            pass
+    return JsonResponse({'status': 'ok'})

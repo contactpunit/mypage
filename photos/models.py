@@ -34,9 +34,9 @@ class Photos(models.Model):
     photo = models.ImageField(upload_to='photos/%Y/%m/%d',
                               blank=False)
     comments = GenericRelation(Comment)
-    # users_like = models.ManyToManyField(settings.AUTH_USER_MODEL,
-    #                                     related_name='images_liked',
-    #                                     blank=True)
+    users_like = models.ManyToManyField(settings.AUTH_USER_MODEL,
+                                        related_name='images_liked',
+                                        blank=True)
 
     def get_absolute_url(self):
         return reverse('photos:detail_photo',

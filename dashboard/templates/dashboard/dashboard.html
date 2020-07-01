@@ -1,5 +1,6 @@
 {% extends 'registration/base.html' %}
 {% load static %}
+{% load thumbnail %}
 <body>
 {% block bodyheader %}
 
@@ -21,31 +22,35 @@
     </div>
     <div class="mydetails">
         <div class="profile">
-            <img src="{% static 'images/profile.png' %}" class="profilepic">
+            <img src="{{ user.profile.photo.url }}" class="profilepic">
         </div>
+        
         <div class="category" style="background:#F8D0C2">
             <div class="gallery1">
                 <img src="{% static 'images/painting.jpg' %}" class="img1">
             </div>
-            <a target="_blank" href="images/logo1.jpg">
-                <div class="gallery">
-                    <img src="{% static 'images/logo1.jpg' %}" class="img">
-                </div>
-            </a>
-            <a target="_blank" href="images/logo1.jpg">
-                <div class="gallery">
-                    <img src="{% static 'images/logo1.jpg' %}" class="img">
-                </div>
-            </a>
-            <a target="_blank" href="images/logo1.jpg">
-                <div class="gallery">
-                    <img src="{% static 'images/logo1.jpg' %}" class="img">
-                </div>
-            </a>
-            <a target="_blank" href="images/logo1.jpg">
+            {% if not altimage %}
+            {% for pic in dashboard_pics %}
+            <div class="gallery">
+                <a href="{{pic.get_absolute_url}}">
+                    {% thumbnail pic.photo "100x100" crop="100%" as im %}
+                    <img src="{{ im.url }}" class="img">
+                    {% endthumbnail %}
+                </a>
+            </div>
+            {% endfor %}
+            <a href="{% url 'dashboard:artifact_details' %}">
                 <div class="gallery1"><h2>&nbsp;&nbsp;&nbsp;+<br>MORE</h2></div>
             </a>
+            {% else %}
+            <a href="images/logo1.jpg">
+                <div class="gallery">
+                    <img src="{% static 'images/logo1.jpg' %}" class="img">
+                </div>
+            </a>
+            {% endif %}
         </div>
+
         <div class="category" style="background:#CBD6F9">
             <div class="gallery1">
                 <img src="{% static 'images/story.jpg' %}" class="img1">

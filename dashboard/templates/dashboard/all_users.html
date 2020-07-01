@@ -10,7 +10,7 @@
         {% for user, profile in profile_map.items %}
         <div>
             {{user.first_name}}
-            <a href="#">
+            <a href="{% url 'dashboard:user_artifacts' user=user.id %}">
                 {% thumbnail profile.photo "140x140" crop="100%" as im %}
                 <img src="{{ im.url }}">
                 {% endthumbnail %}

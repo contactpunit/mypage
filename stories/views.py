@@ -11,14 +11,15 @@ from stories.forms import StoryForm
 @login_required
 def add_story(request):
     if request.method == 'POST':
-        form = StoryForm(request.POST)
+        form = StoryForm(data=request.POST, files=request.FILES)
         current_category = Categories.objects.filter(category='Story')
         if form.is_valid():
             pending_form = form.save(commit=False)
             pending_form.author = request.user
             pending_form.categoryid = current_category[0]
             pending_form.save()
-            return redirect('stories:list_stories')
+            # return redirect('stories:list_stories')
+            return redirect(pending_form.get_absolute_url())
     else:
         form = StoryForm()
         return render(request,

@@ -3,9 +3,9 @@
 {% block bodyheader %}
 <h1> Add New Story </h1>
 <p>Please enter details to the story</p>
-<form action="." method="POST">
+<form method="POST" enctype="multipart/form-data">
     {{form.as_p}}
     {% csrf_token %}
-    <p><input type="submit" value="Add"></p>
+    <p><input type="submit" value="Upload"></p>
 </form>
 {% endblock bodyheader %}

@@ -18,10 +18,19 @@ def homepage(request):
 @login_required
 def dashboard(request):
     altimage = False
+    altstories = False
     dashboard_pics = []
-    ctgry = Categories.objects.all()
+    dashboard_stories = []
+    # ctgry = Categories.objects.all()
     stories = Story.objects.filter(author=request.user.id)
     pics = Photos.objects.filter(owner=request.user.id)
+    if stories:
+        if len(stories) >= 2:
+            dashboard_stories = stories[:2]
+        else:
+            dashboard_stories = stories
+    else:
+        altstories = True
     if pics:
         if len(pics) >= 2:
             dashboard_pics = pics[:2]
@@ -37,6 +46,8 @@ def dashboard(request):
                    'pics': pics,
                    'altimage': altimage,
                    'dashboard_pics': dashboard_pics,
+                   'dashboard_stories': dashboard_stories,
+                   'altstories': altstories
                    })
 
 
@@ -80,9 +91,30 @@ def byusers(request):
 
 
 @login_required
-def artifact_details(request):
+def user_all_photos(request):
     pics = Photos.objects.filter(owner=request.user.id)
     return render(request,
                   'dashboard/storypainting.html',
                   {'pics': pics,
                    'ctry': 'photo'})
+
+
+@login_required
+def user_all_stories(request):
+    stories = Story.objects.filter(owner=request.user.id)
+    return render(request,
+                  'dashboard/storypainting.html',
+                  {'stories': stories,
+                   'ctry': 'photo'})
+
+
+@login_required
+def user_artifacts(request, user):
+    stories = Story.objects.filter(author=user)
+    pics = Photos.objects.filter(owner=user)
+    print(stories)
+    print(pics)
+    return render(request,
+                  'dashboard/user_artifacts.html',
+                  {'stories': stories,
+                   'pics': pics})

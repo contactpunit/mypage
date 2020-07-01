@@ -22,7 +22,11 @@
     </div>
     <div class="mydetails">
         <div class="profile">
+            {% if user.profile.photo %}
             <img src="{{ user.profile.photo.url }}" class="profilepic">
+            {% else %}
+            <img src="{% static 'images/logo1.jpg' %}" class="profilepic">
+            {% endif %}
         </div>
         
         <div class="category" style="background:#F8D0C2">
@@ -39,7 +43,7 @@
                 </a>
             </div>
             {% endfor %}
-            <a href="{% url 'dashboard:artifact_details' %}">
+            <a href="{% url 'dashboard:user_all_photos' %}">
                 <div class="gallery1"><h2>&nbsp;&nbsp;&nbsp;+<br>MORE</h2></div>
             </a>
             {% else %}
@@ -55,21 +59,24 @@
             <div class="gallery1">
                 <img src="{% static 'images/story.jpg' %}" class="img1">
             </div>
-            <a target="_blank" href="images/logo1.jpg">
+            {% if not altstories %}
+            {% for story in dashboard_stories %}
+            <div class="gallery">
+                <a href="{{story.get_absolute_url}}">
+                    {{story.title}}<br>by {{story.author}}
+                </a>
+            </div>
+            {% endfor %}
+            <a href="{% url 'dashboard:user_all_stories' %}">
+                <div class="gallery1"><h2>&nbsp;&nbsp;&nbsp;+<br>MORE</h2></div>
+            </a>
+            {% else %}
+            <a href="images/logo1.jpg">
                 <div class="gallery">
                     <img src="{% static 'images/logo1.jpg' %}" class="img">
                 </div>
             </a>
-            <a target="_blank" href="images/logo1.jpg">
-                <div class="gallery">
-                    <img src="{% static 'images/logo1.jpg' %}" class="img">
-                </div>
-            </a>
-            <a target="_blank" href="images/logo1.jpg">
-                <div class="gallery">
-                    <img src="{% static 'images/logo1.jpg' %}" class="img">
-                </div>
-            </a>
+            {% endif %}
         </div>
     </div>
 </div>

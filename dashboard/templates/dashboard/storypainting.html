@@ -1,0 +1,45 @@
+{% extends 'registration/base.html' %}
+{% load thumbnail %}
+{% block title %} My Photos {% endblock %}
+{% block bodyheader %}
+
+<div class="maincontent">
+    <div class="browseby">
+        <h2><br>&nbsp;&nbsp;Browse By</h2>
+        <a href="{% url 'photos:list_photos' %}">
+            <div class="link1" style="background:#F5BCA8">PAINTINGS</div>
+        </a>
+        <a href="{% url 'stories:list_stories' %}">
+            <div class="link1" style="background:#A8BBF5">STORIES</div>
+        </a>
+        <a href="{% url 'dashboard:user_dashboard' %}">
+            <div class="link1" style="background:#E3A8F5">USERS</div>
+        </a>
+        <a href="">
+            <div class="link1" style="background:#A7E0F5">COMING<br>SOON</div>
+        </a>
+    </div>
+
+    <div class="mydetails">
+        <div class="profile">
+            <img src="{{ user.profile.photo.url }}" class="profilepic">
+        </div>
+        <div class="category">
+            {% if ctry == 'photo' %}
+            {% for pic in pics %}
+            <div class="galleryicon">
+                <a href="{{pic.get_absolute_url}}">
+                    <img src="{{ pic.photo.url }}" class="imgicon">
+                </a>
+            </div>
+            {% endfor %}
+            {% endif %}
+            <!--<a target="_blank" href="images/logo1.jpg">
+                <div class="galleryicon"><img src="images/logo1.jpg" class="imgicon"/>
+                    <p class="story">Title2</p></div>
+            </a>-->
+
+        </div>
+    </div>
+</div>
+{% endblock bodyheader %}

@@ -40,7 +40,7 @@
         <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg1.jpg' %}"/></div>
         <div class="mySlides fade1"><img class="image1" src="{% static 'images/homebkg9.jpg' %}"/></div>
         <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg2.jpg' %}"/></div>
-        <div class="mySlides fade1"><img class="image1" src="{% static 'images/homebkg8.jpg' %}"/></div>
+        <div class="mySlides"><img class="image1" src="{% static 'images/homebkg11.gif' %}"/></div>
         <div class="staticcontent">Welcome to Sparklingstars.com. A site where you can upload and showcase your
             talent.
         </div>
@@ -64,6 +64,25 @@
 	}
 	showSlides();
 
+    </script>
+    <script>src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script>
+        var csrftoken = Cookies.get('csrftoken');
+        function csrfSafeMethod(method) {
+          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+          beforeSend: function(xhr, settings) {
+            if(!csrfSafeMethod(settings.type) && !this.crossDomain) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            }
+          }
+        });
+        $(document).ready(function () {
+          {% block domready %}
+        {% endblock %}
+        });
     </script>
     {% endblock bodyheader %}
     {% block footer %}

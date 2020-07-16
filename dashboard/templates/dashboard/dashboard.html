@@ -3,82 +3,85 @@
 {% load thumbnail %}
 <body>
 {% block bodyheader %}
-
-<div class="maincontent">
-    <div class="browseby">
-        <h2><br>&nbsp;&nbsp;Browse By</h2>
-        <a href="{% url 'photos:list_photos' %}">
-            <div class="link1" style="background:#F5BCA8">PAINTINGS</div>
-        </a>
-        <a href="{% url 'stories:list_stories' %}">
-            <div class="link1" style="background:#A8BBF5">STORIES</div>
-        </a>
-        <a href="{% url 'dashboard:user_dashboard' %}">
-            <div class="link1" style="background:#E3A8F5">USERS</div>
-        </a>
-        <a href="">
-            <div class="link1" style="background:#A7E0F5">COMING<br>SOON</div>
-        </a>
-    </div>
-    <div class="mydetails">
-        <div class="profile">
-            {% if user.profile.photo %}
-            <img src="{{ user.profile.photo.url }}" class="profilepic">
-            {% else %}
-            <img src="{% static 'images/logo1.jpg' %}" class="profilepic">
-            {% endif %}
+    <div class="maincontent">
+        <div class="browseby">
+            <h2><br>&nbsp;&nbsp;Browse By</h2>
+            <a href="{% url 'photos:list_photos' %}">
+                <div class="link1" style="background:#F5BCA8">PAINTINGS</div>
+            </a>
+            <a href="{% url 'stories:list_stories' %}">
+                <div class="link1" style="background:#A8BBF5">STORIES</div>
+            </a>
+            <a href="{% url 'dashboard:user_dashboard' %}">
+                <div class="link1" style="background:#E3A8F5">USERS</div>
+            </a>
+            <a href="">
+                <div class="link1" style="background:#A7E0F5">COMING<br>SOON</div>
+            </a>
         </div>
-        
-        <div class="category" style="background:#F8D0C2">
-            <div class="gallery1">
-                <img src="{% static 'images/painting.jpg' %}" class="img1">
+        <div class="mydetails">
+            <div class="profile">
+                {% if user.profile.photo %}
+                    <img src="{{ user.profile.photo.url }}" class="profilepic">
+                {% else %}
+                    <img src="{% static 'images/profile.png' %}" class="profilepic">
+                {% endif %}
             </div>
-            {% if not altimage %}
-            {% for pic in dashboard_pics %}
-            <div class="gallery">
-                <a href="{{pic.get_absolute_url}}">
-                    {% thumbnail pic.photo "100x100" crop="100%" as im %}
-                    <img src="{{ im.url }}" class="img">
-                    {% endthumbnail %}
+
+            <div class="category" style="background:#F8D0C2">
+                <div class="gallery1">
+                    <img src="{% static 'images/painting.jpg' %}" class="img1">
+                </div>
+                {% if not altimage %}
+                    {% for pic in dashboard_pics %}
+                        <div class="gallery bkgclrp">
+                            <a target="_blank" href="{{ pic.get_absolute_url }}">
+                                {% thumbnail pic.photo "100x100" crop="100%" as im %}
+                                    <img src="{{ im.url }}" class="img">
+                                {% endthumbnail %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <a href="images/logo1.jpg">
+                        <div class="gallery">
+                            <img src="{% static 'images/logo1.jpg' %}" class="img">
+                        </div>
+                    </a>
+                {% endif %}
+                <a href="{% url 'dashboard:user_all_photos' %}"><div class="more" style="background-image: linear-gradient(to right, white, rgba(255 168 168));">
+                    View<br>All
+                </div></a>
+            </div>
+
+            <div class="category" style="background:#CBD6F9">
+                <div class="gallery1">
+                    <img src="{% static 'images/story.jpg' %}" class="img1">
+                </div>
+                {% if not altstories %}
+                    {% for story in dashboard_stories %}
+                        <div class="gallery bkgclrb">
+                            <a target="_blank" href="{{ story.get_absolute_url }}">
+                                {{ story.title }}<br>by {{ story.author }}
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <a href="images/logo1.jpg">
+                        <div class="gallery">
+                            <img src="{% static 'images/logo1.jpg' %}" class="img">
+                        </div>
+                    </a>
+                {% endif %}
+                <a href="{% url 'dashboard:user_all_stories' %}">
+                    <div class="more" style="background-image: linear-gradient(to right, white, rgba(160 223 239));">
+                        View <br>All
+                    </div>
                 </a>
             </div>
-            {% endfor %}
-            <a href="{% url 'dashboard:user_all_photos' %}">
-                <div class="gallery1"><h2>&nbsp;&nbsp;&nbsp;+<br>MORE</h2></div>
-            </a>
-            {% else %}
-            <a href="images/logo1.jpg">
-                <div class="gallery">
-                    <img src="{% static 'images/logo1.jpg' %}" class="img">
-                </div>
-            </a>
-            {% endif %}
+            <div class="upldbutton"><a href="{% url 'dashboard:upload_artifact' %}">Upload your Artifacts</a></div>
         </div>
-
-        <div class="category" style="background:#CBD6F9">
-            <div class="gallery1">
-                <img src="{% static 'images/story.jpg' %}" class="img1">
-            </div>
-            {% if not altstories %}
-            {% for story in dashboard_stories %}
-            <div class="gallery">
-                <a href="{{story.get_absolute_url}}">
-                    {{story.title}}<br>by {{story.author}}
-                </a>
-            </div>
-            {% endfor %}
-            <a href="{% url 'dashboard:user_all_stories' %}">
-                <div class="gallery1"><h2>&nbsp;&nbsp;&nbsp;+<br>MORE</h2></div>
-            </a>
-            {% else %}
-            <a href="images/logo1.jpg">
-                <div class="gallery">
-                    <img src="{% static 'images/logo1.jpg' %}" class="img">
-                </div>
-            </a>
-            {% endif %}
         </div>
     </div>
-</div>
 {% endblock bodyheader %}
 </body>

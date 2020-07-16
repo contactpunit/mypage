@@ -2,15 +2,32 @@
 {% block title %}User Registration Form{% endblock title %}
 <body>
 {% block bodyheader %}
-<div class="maincontent">
-    <div class="bkg"></div>
-    <h1>User Registration Form</h1>
-    <p>Please fill below form to register.</p>
-    <form action="." method="POST">
-        {{user_form.as_p}}
-        {% csrf_token %}
-        <p><input type="submit" value="Create my Account"></p>
-    </form>
-</div>
+    <div class="content">
+        <div class="maincontent">
+            <div class="bkg"></div>
+            <div class="registerbox">
+                <h4> New User Registration Form !</h4>
+                <form method="POST" action=".">
+                    {{ user_form.non_field_errors }}
+                    <input type="text" name="first_name" placeholder="First Name" size="20" maxlength="20">
+                    {{ user_form.first_name.errors }}
+                    <input type="text" name="last_name" placeholder="Last Name" style="margin-left:2px" size="20"
+                           maxlength="20">
+                    {{ user_form.last_name.errors }}
+                    <input type="text" name="username" placeholder="Enter User Name" size="45" maxlength="40">
+                    {{ user_form.username.errors }}
+                    <input type="text" name="email" placeholder="Enter Email ID" size="45" maxlength="40">
+                    {{ user_form.email.errors }}
+                    <input type="password" name="password" placeholder="Enter Password" size="45" maxlength="40">
+                    {{ user_form.password.errors }}
+                    <input type="password" name="password2" placeholder="Confirm Password" size="45" maxlength="40">
+                    {{ user_form.password2.errors }}
+                    {% csrf_token %}
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+        <div class="footer">@2020</div>
+    </div>
 {% endblock bodyheader %}
 </body>

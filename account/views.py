@@ -37,6 +37,10 @@ def profile(request):
         profileform = ProfileForm(instance=request.user.profile,
                                   data=request.POST,
                                   files=request.FILES)
+        print(profileform.errors)
+        print(userform.errors)
+        print(profileform.cleaned_data)
+        print(userform.cleaned_data)
         if userform.is_valid() and profileform.is_valid():
             userform.save()
             profileform.save()

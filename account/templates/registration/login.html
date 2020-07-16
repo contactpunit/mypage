@@ -1,18 +1,23 @@
 {% extends 'registration/base.html' %}
 <body>
 {% block bodyheader %}
-<div class="maincontent">
-    <div class="bkg"></div>
-    <div class="loginbox">
-        <h1>Welcome Back!</h1>
-        <form action="{% url 'account:login' %}" method="POST">
-            {{form.as_p}}
-            {% csrf_token %}
-            <input type="hidden" name="next" value="{{next}}"/>
-            <p><input type="submit" value="Log In"></p>
-        </form>
-        <a href="{% url 'account:password_reset' %}">Forgot password?</a>
+    <div class="maincontent">
+        <div class="bkg"></div>
+        <div class="loginbox">
+            <h1>Welcome Back!</h1>
+            <form action="{% url 'account:login' %}" method="POST">
+                {{ form.non_field_errors }}
+                <p><input type="text" name="username" placeholder="Enter Username or Email Id" size="40" maxlength="40">
+                </p>
+                {{ form.username.errors }}
+                <p><input type="password" name="password" placeholder="Enter Password" size="40" maxlength="40"></p>
+                {{ form.password.errors }}
+                <p><input type="submit" name="" value="Login"></p>
+                {% csrf_token %}
+                <input type="hidden" name="next" value="{{ next }}"/>
+            </form>
+            <a href="{% url 'account:password_reset' %}">Forgot password?</a>
+        </div>
     </div>
-</div>
 {% endblock bodyheader %}
 </body>

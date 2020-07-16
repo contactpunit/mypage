@@ -4,90 +4,95 @@
 <head>
     <title>{% block title %}Sparkling Kids{% endblock title %}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="{% static 'commonCSS.css' %}"/>
+    <link rel="stylesheet" href="{% static 'commonCSS.css' %}">
 </head>
 <body>
 <div class="content">
     <div class="header">
         <img src="{% static 'images/logo.jpg' %}" class="logo">
         <nav class="navg">
+
             {% if request.user.is_authenticated %}
-            <a href="{% url 'account:profile' %}">
-                <div class="links" style="background:#DB3385; color:white">Edit<br>My Profile</div>
-            </a>
-            <a href="{% url 'dashboard:dashboard' %}">
-                <div class="links">My<br>Dashboard</div>
-            </a>
-            <a href="{% url 'account:logout' %}">
-                <div class="links">Logout</div>
-            </a>
+                <a href="{% url 'account:profile' %}">
+                    <div class="links" style="background:#DB3385; color:white">Edit<br>My Profile</div>
+                </a>
+                <a href="{% url 'dashboard:dashboard' %}">
+                    <div class="links">My<br>Dashboard</div>
+                </a>
+                <a href="{% url 'account:logout' %}">
+                    <div class="links">Logout</div>
+                </a>
             {% else %}
-            <div class="links" style="background:#DB3385; color:white">HOME<br>SparklingKids</div>
-            <a href="{% url 'account:login' %}">
-                <div class="links">LOGIN<br>Sign in</div>
-            </a>
-            <a href="{% url 'account:register' %}">
-                <div class="links">NEW USER<br>Register</div>
-            </a>
-            <a href="">
-                <div class="links">ABOUT US<br>Contact us</div>
-            </a>
+                <div class="links" style="background:#DB3385; color:white">HOME<br>SparklingKids</div>
+                <a href="{% url 'account:login' %}">
+                    <div class="links">LOGIN<br>Sign in</div>
+                </a>
+                <a href="{% url 'account:register' %}">
+                    <div class="links">NEW USER<br>Register</div>
+                </a>
+                <a href="">
+                    <div class="links">ABOUT US<br>Contact us</div>
+                </a>
             {% endif %}
         </nav>
     </div>
     {% block bodyheader %}
-    <div class="maincontent">
-        <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg1.jpg' %}"/></div>
-        <div class="mySlides fade1"><img class="image1" src="{% static 'images/homebkg9.jpg' %}"/></div>
-        <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg2.jpg' %}"/></div>
-        <div class="mySlides"><img class="image1" src="{% static 'images/homebkg11.gif' %}"/></div>
-        <div class="staticcontent">Welcome to Sparklingstars.com. A site where you can upload and showcase your
-            talent.
+        <div class="maincontent">
+            <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg1.jpg' %}"/></div>
+            <div class="mySlides fade1"><img class="image1" src="{% static 'images/homebkg9.jpg' %}"/></div>
+            <div class="mySlides fade"><img class="image1" src="{% static 'images/homebkg2.jpg' %}"/></div>
+            <div class="mySlides"><img class="image1" src="{% static 'images/homebkg11.gif' %}"/></div>
+            <div class="staticcontent">Welcome to Sparklingstars.com. A site where you can upload and showcase your
+                talent.
+            </div>
         </div>
-    </div>
+        <script>
+            var slideIndex = 0;
 
-
-    <script>
-	var slideIndex = 0;
-	function showSlides()
-	{
-	  var i;
-	  var slides = document.getElementsByClassName("mySlides");
-	  for (i = 0; i < slides.length; i++)
-	  {
-	    slides[i].style.display = "none";
-	  }
-	  slideIndex++;
-	  if (slideIndex > slides.length) {slideIndex = 1}
-	  slides[slideIndex-1].style.display = "block";
-	  setTimeout(showSlides, 3000); // Change image every 3 seconds
-	}
-	showSlides();
-
-    </script>
-    <script>src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script>
-        var csrftoken = Cookies.get('csrftoken');
-        function csrfSafeMethod(method) {
-          return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
-        }
-        $.ajaxSetup({
-          beforeSend: function(xhr, settings) {
-            if(!csrfSafeMethod(settings.type) && !this.crossDomain) {
-              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            function showSlides() {
+                var i;
+                var slides = document.getElementsByClassName("mySlides");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slideIndex++;
+                if (slideIndex > slides.length) {
+                    slideIndex = 1
+                }
+                slides[slideIndex - 1].style.display = "block";
+                setTimeout(showSlides, 3000); // Change image every 3 seconds
             }
-          }
-        });
-        $(document).ready(function () {
-          {% block domready %}
-        {% endblock %}
-        });
-    </script>
+
+            showSlides();
+        </script>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.0/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <script>
+            var csrftoken = Cookies.get('csrftoken');
+
+            function csrfSafeMethod(method) {
+                return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+            }
+
+            $.ajaxSetup({
+                beforeSend: function (xhr, settings) {
+                    if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                    }
+                }
+            });
+            $(document).ready(function () {
+                {% block domready %}
+                {% endblock %}
+            });
+        </script>
     {% endblock bodyheader %}
+
     {% block footer %}
-    <div class="footer">@2020</div>
+        <div class="footer">@2020</div>
     {% endblock footer %}
+
 </div>
 </body>
 </html>

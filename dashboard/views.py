@@ -10,11 +10,6 @@ from catagories.models import Categories
 app_name = 'dashboard'
 
 
-def homepage(request):
-    return render(request,
-                  'dashboard/front.html')
-
-
 @login_required
 def dashboard(request):
     altimage = False
@@ -101,7 +96,7 @@ def user_all_photos(request):
 
 @login_required
 def user_all_stories(request):
-    stories = Story.objects.filter(owner=request.user.id)
+    stories = Story.objects.filter(author=request.user.id)
     return render(request,
                   'dashboard/storypainting.html',
                   {'stories': stories,
@@ -118,3 +113,8 @@ def user_artifacts(request, user):
                   'dashboard/user_artifacts.html',
                   {'stories': stories,
                    'pics': pics})
+
+
+@login_required
+def upload_artifact(request):
+    return render(request, 'dashboard/upload.html')

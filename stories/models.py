@@ -24,6 +24,7 @@ class Story(models.Model):
     status = models.CharField(max_length=10,
                               choices=STATUS_CHOICES,
                               default='published')
+    caption = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     comments = GenericRelation(Comment)

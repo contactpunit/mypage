@@ -7,7 +7,8 @@ class StoryForm(ModelForm):
     class Meta:
         model = Story
         fields = ['title', 'slug',
-                  'status', 'story'
+                  'status', 'story',
+                  'caption'
                   ]
         widgets = {
             'slug': forms.HiddenInput,

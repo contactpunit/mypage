@@ -1,0 +1,47 @@
+{% extends 'registration/base.html' %}
+{% load thumbnail %}
+{% block title %} My Photos {% endblock %}
+<body>
+{% block bodyheader %}
+    <div class="maincontent">
+        <div class="browseby">
+            <h2><br>&nbsp;&nbsp;Browse By</h2>
+            <a href="{% url 'photos:list_photos' %}">
+                <div class="link1" style="background:#F5BCA8">PAINTINGS</div>
+            </a>
+            <a href="{% url 'stories:list_stories' %}">
+                <div class="link1" style="background:#A8BBF5">STORIES</div>
+            </a>
+            <a href="{% url 'dashboard:user_dashboard' %}">
+                <div class="link1" style="background:#E3A8F5">USERS</div>
+            </a>
+            <a href="">
+                <div class="link1" style="background:#A7E0F5">COMING<br>SOON</div>
+            </a>
+        </div>
+
+        <div class="mydetails">
+            <div class="profile">
+                <img src="{{ user.profile.photo.url }}" class="profilepic">
+            </div>
+            <div class="category">
+                {% if ctry == 'photo' %}
+                    {% for pic in pics %}
+                        <a href="{{ pic.get_absolute_url }}">
+                            <div class="galleryicon"><img src="{{ pic.photo.url }}" class="imgicon picdp">
+                                <p class="painting">{{ pic.title }}</p></div>
+                        </a>
+                    {% endfor %}
+                {% elif ctry == 'story' %}
+                    {% for story in stories %}
+                        <a href="{{ story.get_absolute_url }}" class="galleryicon picdp">
+                            <div class="galleryicon bkgclrb"> >
+                                <p class="painting">{{ story.title }}</p></div>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock bodyheader %}
+</body>

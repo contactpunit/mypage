@@ -1,23 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-        <title>Sparkling Kids</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href='css/commonCSS.css'>
-</head>
-
-
+{% extends 'registration/base.html' %}
+{% load thumbnail %}
+{% block title %} My Photos {% endblock %}
+{% block bodyheader %}
 <body>
-<div class="content">
-	<div class="header">
-           <div class="logo"></div>
-               <nav class="navg">
-					<a href="home.html"><div class="links">HOME<br>SparklingStars</div></a>
-					<a href=""><div class="links">PROFILE<br>My Details</div></a>
-					<a href=""><div class="links">LOG OUT<br>Sign out</div></a>
-               </nav>
-        </div>
-        
      <div class="maincontent">        
 		<img src="css/images/logo1.jpg" class="imgfullsize"/>
 		<div class="imgdtls">
@@ -37,7 +22,6 @@
 					eggg</div>
 		</div>
 	</div>
-	<div class="footer">@2020</div>	
-</div>
+	<div class="footer">@2020</div>
 </body>
-</html>
+{% endblock bodyheader %}

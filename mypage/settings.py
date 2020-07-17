@@ -139,4 +139,4 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-SESSION_COOKIE_AGE = 300
+# SESSION_COOKIE_AGE = 300

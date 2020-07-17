@@ -7,15 +7,16 @@
         <div class="bkg"></div>
         <div class="loginbox">
             <h4> Hurray !! It's Upload Time !!</h4>
-            <form>
-                <input type="text" name="" placeholder="Enter Title" size="40" maxlength="100">
-                <input type="text" name="" placeholder="Created On" size="40" maxlength="60">
-                <select name="type" style="width:200px;">
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Enter Title" size="40" maxlength="100">
+                <input type="text" name="caption" placeholder="Caption" size="40" maxlength="60">
+                <select name="artifacttype" style="width:200px;">
                     <option value="">Select Type</option>
                     <option value="P">Painting</option>
                     <option value="S">Story</option>
                 </select><br>
-                <input type="file" placeholder="Enter File Path" size="70">
+                <input type="file" name="filepath" placeholder="Enter File Path" size="70"/>
                 <input type="submit" name="" value="Upload" redirect="" style=>
             </form>
         </div>

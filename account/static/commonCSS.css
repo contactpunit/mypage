@@ -505,20 +505,21 @@ p.painting {
 }
 
 .imgfullsize {
-    height: 495px;
-    width: 520px;
+    height: 430px;
+    /*width: 520px;*/
+    width: 50%;
     border: 1px dotted grey;
     float: left;
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 20px;
     margin-right: 30px;
 }
 
 .imgdtls {
     margin-top: 10px;
-    height: 495px;
-    width: 550px;
-    border: 0px solid blue;
+    height: 430px;
+    width: 400px;
+    border: 1px solid blue;
     float: left;
     overflow: auto;
     margin-top: 12px;

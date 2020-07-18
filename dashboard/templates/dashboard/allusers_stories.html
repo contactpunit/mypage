@@ -1,0 +1,28 @@
+{% extends 'registration/base.html' %}
+{% load thumbnail %}
+{% load static %}
+{% block title %} All Stories {% endblock %}
+<body>
+{% block bodyheader %}
+    <div class="maincontent">
+        <div class="mydetails">
+            <div class="category">
+                {% for auser, stories in storiesmap.items %}
+                    <div class="profile">
+                        <img src="{{ auser.profile.photo.url }}" class="profilepic">
+                    </div>
+                    <div class="profiletitle">{{ auser.first_name }} {{ auser.last_name }}</div>
+                    <div>
+                        {% for story in stories %}
+                            <a href="{{ story.get_absolute_url }}" class="galleryicon picdp">
+                                <div class="galleryicon bkgclrb"> >
+                                    <p class="painting">{{ story.title }}</p></div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock bodyheader %}
+</body>

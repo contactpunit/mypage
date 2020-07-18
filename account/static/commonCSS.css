@@ -1,6 +1,6 @@
 
 body {
-    background-image: url("images.old/background.png");
+    background-image: url("images/background.png");
     background-color: #FFE4C4;
     background-size: cover;
     background-repeat: repeat;
@@ -41,7 +41,7 @@ body {
 }
 
 .logo {
-    background-image: url("images.old/logo.jpg");
+    background-image: url("images/logo.jpg");
     background-size: cover;
     width: 160px;
     height: 110px;
@@ -108,7 +108,7 @@ body {
 
 
 .bkg {
-    background-image: url("images.old/backgrdimage.jpg");
+    background-image: url("images/backgrdimage.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -258,7 +258,7 @@ h4 {
     font-size: 16px;
     color: darkblue;
     margin-left: 18px;
-    marging-right: 0px;
+    margin-right: 0px;
 }
 
 .mySlides {
@@ -350,9 +350,15 @@ h4 {
 
 .profilepic {
     height: 120px;
-    width:120px;
+    width: 120px;
     margin-top: 3px;
     border-radius: 60px;
+}
+
+.profiletitle {
+    height: 5px;
+    margin-top: 3px;
+    text-align: center;
 }
 
 .category {
@@ -519,20 +525,17 @@ p.painting {
     margin-top: 10px;
     height: 430px;
     width: 400px;
-    border: 1px solid blue;
+    /*border: 1px solid blue;*/
     float: left;
     overflow: auto;
-    margin-top: 12px;
 }
 
 .textformat {
-
     font-size: 24px;
     color: black;
     align: center;
     margin-bottom: 0px;
     margin-top: 0px;
-    color: Black;
 }
 
 .textformat1 {

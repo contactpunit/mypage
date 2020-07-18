@@ -1,0 +1,32 @@
+{% extends 'registration/base.html' %}
+{% load thumbnail %}
+{% load static %}
+{% block title %} All Photos {% endblock %}
+<body>
+{% block bodyheader %}
+    <div class="maincontent">
+        <div class="mydetails">
+            <div class="category">
+                {% for auser, photos in photosmap.items %}
+                    <div class="profile">
+                        {% if auser.profile.photo %}
+                            <img src="{{ auser.profile.photo.url }}" class="profilepic">
+                        {% else %}
+                            <img src="{% static 'images/profile.png' %}" class="profilepic">
+                        {% endif %}
+                    </div>
+                    <div class="profiletitle">{{ auser.first_name }} {{ auser.last_name }}</div>
+                    <div>
+                        {% for photo in photos %}
+                            <a href="{{ photo.get_absolute_url }}">
+                                <div class="galleryicon"><img src="{{ photo.photo.url }}" class="imgicon picdp">
+                                    <p class="painting">{{ photo.title }}</p></div>
+                            </a>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock bodyheader %}
+</body>

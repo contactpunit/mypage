@@ -1,5 +1,6 @@
 {% extends 'registration/base.html' %}
 {% load thumbnail %}
+{% load static %}
 {% block title %} My Photos {% endblock %}
 <body>
 {% block bodyheader %}
@@ -22,16 +23,22 @@
 
         <div class="mydetails">
             <div class="profile">
-                <img src="{{ user.profile.photo.url }}" class="profilepic">
+                {% if user.profile.photo.value %}
+                    <img src="{{ user.profile.photo.url }}" class="profilepic"/>
+                {% else %}
+                    <img src="{% static 'images/profile.png' %}" class="profilepic"/>
+                {% endif %}
             </div>
             <div class="category">
                 {% if ctry == 'photo' %}
-                    {% for pic in pics %}
-                        <a href="{{ pic.get_absolute_url }}">
-                            <div class="galleryicon"><img src="{{ pic.photo.url }}" class="imgicon picdp">
-                                <p class="painting">{{ pic.title }}</p></div>
-                        </a>
-                    {% endfor %}
+                    {% if pics %}
+                        {% for pic in pics %}
+                            <a href="{{ pic.get_absolute_url }}">
+                                <div class="galleryicon"><img src="{{ pic.photo.url }}" class="imgicon picdp">
+                                    <p class="painting">{{ pic.title }}</p></div>
+                            </a>
+                        {% endfor %}
+                    {% endif %}
                 {% elif ctry == 'story' %}
                     {% for story in stories %}
                         <a href="{{ story.get_absolute_url }}" class="galleryicon picdp">

@@ -32,7 +32,7 @@ LOGOUT_URL = 'account:logout'
 
 LOGIN_REDIRECT_URL = 'dashboard:dashboard'
 
-LOGOUT_REDIRECT_URL = 'dashboard:front'
+LOGOUT_REDIRECT_URL = 'account:login'
 
 # Application definition
 
@@ -139,4 +139,4 @@ MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 
-# SESSION_COOKIE_AGE = 300
+SESSION_COOKIE_AGE = 300

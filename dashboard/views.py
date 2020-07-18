@@ -63,6 +63,30 @@ def get_all_artifacts(request, id=None, user=None):
 
 
 @login_required
+def get_all_users_stories(request):
+    storiesmap = {}
+    other_users = User.objects.filter(~Q(username=request.user) & ~Q(is_superuser=True))
+    for user in other_users:
+        user_stories = Story.objects.filter(author=user.id)
+        storiesmap[user] = user_stories
+    return render(request,
+                  'dashboard/allusers_stories.html',
+                  {'storiesmap': storiesmap})
+
+
+@login_required
+def get_all_users_photos(request):
+    photosmap = {}
+    other_users = User.objects.filter(~Q(is_superuser=True))
+    for user in other_users:
+        user_photos = Photos.objects.filter(owner=user.id)
+        photosmap[user] = user_photos
+    return render(request,
+                  'dashboard/allusers_photos.html',
+                  {'photosmap': photosmap})
+
+
+@login_required
 def get_users_by_category(request, catgy=None, ctryname=None):
     other_users = User.objects.filter(~Q(username=request.user) & ~Q(is_superuser=True))
     return render(request,
@@ -110,8 +134,6 @@ def user_all_stories(request):
 def user_artifacts(request, user):
     stories = Story.objects.filter(author=user)
     pics = Photos.objects.filter(owner=user)
-    print(stories)
-    print(pics)
     return render(request,
                   'dashboard/user_artifacts.html',
                   {'stories': stories,

@@ -24,7 +24,7 @@ SECRET_KEY = 'z&&1u81x@$xyf_e$*yf77(uvxql!x$i!2+g057x!4t&*edg=2y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 LOGIN_URL = 'account:login'
 
@@ -90,8 +90,14 @@ WSGI_APPLICATION = 'mypage.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'mypage',
+        'USER': 'punit',
+        'PASSWORD': 'punit',
+        'HOST': '',
+        'PORT': '',
     }
 }
 

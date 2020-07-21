@@ -1,6 +1,7 @@
+__pycache__/*
+*/__pycache__/*
+*/*/__pycache__/*
+media/cache/*
+media/*
 db.sqlite3
-*__pycache__*
-.idea/
-.DS_Store
-media**
-venv
+.idea

@@ -2,13 +2,13 @@ from django.urls import path
 from .views import dashboard, get_all_artifacts, \
     get_users_by_category, byusers, user_all_photos, \
     user_all_stories, user_artifacts, upload_artifact, \
-    get_all_users_stories, get_all_users_photos
+    get_all_users_stories, get_all_users_photos, homepage
 
 app_name = 'dashboard'
 
 urlpatterns = [
-    # path('', homepage, name='front'),
-    path('', dashboard, name='dashboard'),
+    path('', homepage, name='front'),
+    path('dashboard/', dashboard, name='dashboard'),
     path('dashboard/byuser', byusers, name='user_dashboard'),
     path('dashboard/allphotos', user_all_photos, name='user_all_photos'),
     path('dashboard/allstories', user_all_stories, name='user_all_stories'),

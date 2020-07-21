@@ -49,6 +49,11 @@ def dashboard(request):
                    })
 
 
+def homepage(request):
+    return render(request,
+                  'dashboard/front.html')
+
+
 @login_required
 def get_all_artifacts(request, id=None, user=None):
     stories = Story.objects.filter(author=id)

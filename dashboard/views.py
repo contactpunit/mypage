@@ -154,6 +154,7 @@ def upload_artifact(request):
         request.POST['slug'] = slug
         request.POST['status'] = 'published'
         if artifacttype == 'P':
+            print('P type')
             category = 'Photos'
             request.FILES['photo'] = artifact
         elif artifacttype == 'S':

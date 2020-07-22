@@ -1,17 +1,50 @@
 {% extends 'registration/base.html' %}
 {% load thumbnail %}
+{% load static %}
 
 {% block title %} Users {% endblock title %}
 <body>
 {% block bodyheader %}
-<div class="maincontent">
-    <div class="bkg"></div>
-    <div>
-        {{stories}}
+    <div class="maincontent">
+        {#        <div class="bkg"></div>#}
+        <div class="browseby">
+            <h2><br>&nbsp;&nbsp;Browse By</h2>
+            <a href="{% url 'dashboard:get_all_users_photos' %}">
+                <div class="link1" style="background:#F5BCA8">PAINTINGS</div>
+            </a>
+            <a href="{% url 'dashboard:get_all_users_stories' %}">
+                <div class="link1" style="background:#A8BBF5">STORIES</div>
+            </a>
+            <a href="{% url 'dashboard:byusers' %}">
+                <div class="link1" style="background:#E3A8F5">USERS</div>
+            </a>
+            <a href="">
+                <div class="link1" style="background:#A7E0F5">COMING<br>SOON</div>
+            </a>
+        </div>
+        <div class="mydetails">
+            <div class="profile">
+                <div>
+                    <a href="#">
+                        <img src="{% static 'images/painting.jpg' %}" class="profilepic">
+                    </a>
+                </div>
+                <div>
+                    <a href="#">
+                        <img src="{% static 'images/story.jpg' %}" class="profilepic">
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-        {{pics}}
-    </div>
-</div>
 {% endblock bodyheader %}
 </body>
+
+
+{#    <div>#}
+{#        {{stories}}#}
+{#    </div>#}
+{#    <div>#}
+{#        {{pics}}#}
+
+

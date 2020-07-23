@@ -26,7 +26,6 @@
                 {% for user, profile in profile_map.items %}
                     <div>
                         {% if user.profile.photo %}
-                            {#                    <img src="{{ user.profile.photo.url }}" class="profilepic">#}
                             <a href="{% url 'dashboard:user_artifacts' user=user.id %}">
                                 {% thumbnail user.profile.photo "140x140" crop="100%" as im %}
                                     <img src="{{ im.url }}" class="profilepic">
@@ -34,7 +33,6 @@
                             {{ user.first_name }}
                             </a>
                         {% else %}
-                            {#                    <img src="{% static 'images/profile.png' %}" class="profilepic">#}
                             <a href="{% url 'dashboard:user_artifacts' user=user.id %}">
                                 <img src="{% static 'images/profile.png' %}" class="profilepic">
                             {{ user.first_name }}

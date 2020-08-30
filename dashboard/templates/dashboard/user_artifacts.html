@@ -24,16 +24,50 @@
         </div>
         <div class="mydetails">
             <div class="profile">
-                <div>
-                    <a href="#">
-                        <img src="{% static 'images/painting.jpg' %}" class="profilepic">
-                    </a>
+                {% if userdetail.profile.photo %}
+                    <img src="{{ userdetail.profile.photo.url }}" class="profilepic">
+                {% else %}
+                    <img src="{% static 'images/profile.png' %}" class="profilepic">
+                {% endif %}
+            </div>
+
+            <div class="category" style="background:#F8D0C2">
+                <div class="gallery1">
+                    <img src="{% static 'images/painting.jpg' %}" class="img1">
                 </div>
-                <div>
+                {% if not altimage %}
+                    {% for pic in dashboard_pics %}
+                        <div class="gallery bkgclrp">
+                            <a target="_blank" href="{{ pic.get_absolute_url }}">
+                                {% thumbnail pic.photo "100x100" crop="100%" as im %}
+                                    <img src="{{ im.url }}" class="img">
+                                {% endthumbnail %}
+                            </a>
+                        </div>
+                    {% endfor %}
+                {% else %}
                     <a href="#">
-                        <img src="{% static 'images/story.jpg' %}" class="profilepic">
+                        <div class="gallery">
+                            <img src="{% static 'images/logo1.jpg' %}" class="img">
+                        </div>
                     </a>
-                </div>
+                {% endif %}
+                <a href="{% url 'dashboard:user_all_photos' %}">
+                    <div class="more" style="background-image: linear-gradient(to right, white, rgba(255 168 168));">
+                        View<br>All
+                    </div>
+                </a>
+            </div>
+
+            {#                <div>#}
+            {#                    <a href="{% url 'dashboard:user_artifacts' user=user.id %}">#}
+            {#                        <img src="{% static 'images/painting.jpg' %}" class="profilepic">#}
+            {#                    </a>#}
+            {#                </div>#}
+            <div>
+                <a href="#">
+                    <img src="{% static 'images/story.jpg' %}" class="profilepic">
+                </a>
             </div>
         </div>
     </div>

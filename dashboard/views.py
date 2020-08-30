@@ -137,12 +137,39 @@ def user_all_stories(request):
 
 @login_required
 def user_artifacts(request, user):
+    # stories = Story.objects.filter(author=user)
+    # pics = Photos.objects.filter(owner=user)
+    userdetail = User.objects.filter(pk__exact=user)
+    altimage = False
+    altstories = False
+    dashboard_pics = []
+    dashboard_stories = []
     stories = Story.objects.filter(author=user)
     pics = Photos.objects.filter(owner=user)
+    if stories:
+        if len(stories) >= 2:
+            dashboard_stories = stories[:2]
+        else:
+            dashboard_stories = stories
+    else:
+        altstories = True
+    if pics:
+        if len(pics) >= 2:
+            dashboard_pics = pics[:2]
+        else:
+            dashboard_pics = pics
+    else:
+        altimage = True
     return render(request,
                   'dashboard/user_artifacts.html',
                   {'stories': stories,
-                   'pics': pics})
+                   'pics': pics,
+                   'user': user,
+                   'altimage': altimage,
+                   'dashboard_pics': dashboard_pics,
+                   'dashboard_stories': dashboard_stories,
+                   'userdetail': userdetail
+                   })
 
 
 @login_required
